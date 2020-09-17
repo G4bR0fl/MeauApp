@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Button, StatusBar } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts, Roboto_400Regular, Roboto_500Medium} from  '@expo-google-fonts/roboto';
@@ -20,6 +20,8 @@ export default function profileRegister({navigation}) {
 
 	return (
 		<ScrollView> 
+			<StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
+
 			<View style={styles.container}>
 				<View style={styles.header}></View>
 

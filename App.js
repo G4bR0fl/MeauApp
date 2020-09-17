@@ -24,7 +24,6 @@ export default function App() {
   return (
 	  
 	<NavigationContainer>
-		<StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
 		<Stack.Navigator>
 			<Stack.Screen 
 				name="Home"
