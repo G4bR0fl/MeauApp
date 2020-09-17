@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import profileRegister from './profileRegister';
 
 const Stack = createStackNavigator();
 
@@ -11,6 +10,7 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <Text>Home Page dos homi</Text>
       <Button title="Profile Registration" onPress={() => navigation.navigate('profileRegister') }/>
+      <Button title="Pet Registration" onPress={() => navigation.navigate('petRegister') }/>
     </View>
   );
 }

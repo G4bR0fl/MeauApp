@@ -1,7 +1,8 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-nagivation'
-import Home from '../screens/home' ;
+import Home from '../screens/home';
 import profileRegister from '../screens/profileRegister';
+import petRegister from '../screens/petRegister';
 
 const screens = {
     Home: {
@@ -9,6 +10,9 @@ const screens = {
     },
     profileRegister: {
         screen: profileRegister
+    },
+    petRegister: {
+        screen: petRegister
     }
 }
 
