@@ -5,9 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts, Roboto_400Regular, Roboto_500Medium} from  '@expo-google-fonts/roboto';
 import { AppLoading } from 'expo';
 
-// import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-
-
 const Stack = createStackNavigator();
 
 export default function profileRegister({navigation}) {
