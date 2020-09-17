@@ -6,24 +6,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Icon } from 'react-native-elements'
 
-
 import Home from './src/screens/home';
 import profileRegister from './src/screens/profileRegister';
+import loginError from './src/screens/loginError';
 
 const Stack = createStackNavigator();
-
-let data = [{
-	value: 'Banana',
-}, {
-	value: 'Mango',
-}, {
-	value: 'Pear',
-}];	
 
 export default function App() {
   return (
 	  
 	<NavigationContainer>
+		
 		<Stack.Navigator>
 			<Stack.Screen 
 				name="Home"
@@ -46,7 +39,19 @@ export default function App() {
 					),
 				}}
 			/>
+			<Stack.Screen 
+				name="loginError"
+				component={loginError}
+				options={{ 
+					title: 'Cadastro',
+					headerTintColor: '#434343',
+					headerStyle: {
+						backgroundColor: '#88c9bf',
+					},
+				}}
+			/>
 		</Stack.Navigator>
+
 	</NavigationContainer>
   );
 }

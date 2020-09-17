@@ -989,10 +989,10 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@expo-google-fonts/inter@^0.1.0":
+"@expo-google-fonts/courgette@^0.1.0":
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
-  integrity sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA==
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/courgette/-/courgette-0.1.0.tgz#75ce8c2280a0ea6a8c998d7a4ec4d1e30bc701a5"
+  integrity sha512-7Z35fMcJJkwcJmsDVRe8bw6gosWuhjmfStKSnllyV0xe7+hxgCZTjdBDm/pF5n12Fdilxhsp3CKJWmr103FTZA==
 
 "@expo-google-fonts/roboto@^0.1.0":
   version "0.1.0"
@@ -4696,6 +4696,7 @@ react-native-material-textfield@^0.12.0:
   dependencies:
     prop-types "^15.5.9"
 
+
 react-native-ratings@^7.2.0:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-7.3.0.tgz#32e11e4ed944ba8adbbc995d601df3f131619b6f"
@@ -4712,9 +4713,15 @@ react-native-reanimated@^1.9.0:
     fbjs "^1.0.0"
 
 react-native-safe-area-context@^3.0.7:
+
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.8.tgz#7a9883aa0f38f9c77d4bef2b89e4e285bc1024a3"
+  integrity sha512-9gUlsDZ96QwT9AKzA6aVWM/NX5rlJgauZ9HgCDVzKbe29UQYT1740QJnnaI2GExmkFGp6o7ZLNhCXZW95eYVFA==
+
   version "3.1.7"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.7.tgz#fc9e636dfb168f992a2172d363509ce0611a8403"
   integrity sha512-qSyg/pVMwVPgAy8yCvw349Q+uEUhtRBV33eVXHHkfoou1vCChJxI7SmNR47/6M3BLdjWcyc4lcd018Kx+jhQCw==
+
 
 react-native-safe-area-context@~3.0.7:
   version "3.0.7"
