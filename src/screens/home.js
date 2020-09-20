@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  Image,
-} from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { AppLoading } from "expo";
 import { useFonts, Courgette_400Regular } from "@expo-google-fonts/courgette";
+import PetRegister from "./petRegister";
+import ProfileRegister from "./profileRegister";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
-
 export default function Home({ navigation }) {
   let [fontsLoaded] = useFonts({
     Courgette_400Regular,
@@ -106,15 +100,17 @@ export default function Home({ navigation }) {
             <Text style={styles.textButton}>AJUDAR</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(PetRegister.name);
+          }}
+        >
           <View style={styles.button} backgroundColor="#ffd358">
             <Text style={styles.textButton}>CADASTRAR ANIMAL</Text>
           </View>
         </TouchableOpacity>
       </View>
-      <Text style={styles.loginLink} onPress={() => {}}>
-        login
-      </Text>
+      <Text style={styles.loginLink}>login</Text>
       <Image
         style={styles.logo}
         source={require("../../assets/logo/meau_logo.png")}
