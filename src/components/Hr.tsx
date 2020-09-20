@@ -1,13 +1,7 @@
-import React from "react";
-import { View } from "react-native";
+import styled from "styled-components/native";
 
-export default function Hr() {
-  return (
-    <View
-      style={{
-        borderBottomColor: "black",
-        borderBottomWidth: 1,
-      }}
-    />
-  );
-}
+export default styled.View`
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  margin: 10px 0px;
+`;
