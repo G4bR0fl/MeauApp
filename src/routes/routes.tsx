@@ -1,29 +1,23 @@
-import 'react-native-gesture-handler';
-
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import Home from "../screens/home";
+import profileRegister from "../screens/profileRegister";
+import petRegister from "../screens/petRegister";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from 'react-native-elements'
-
-import Home from './src/screens/home';
-import profileRegister from './src/screens/profileRegister';
-import loginError from './src/screens/loginError';
-
+import loginError from '../screens/loginError';
+import { StyleSheet, StatusBar } from 'react-native';
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function Routing() {
   return (
-	  
-	<NavigationContainer>
-		
-		<Stack.Navigator>
+    <Stack.Navigator>
+
 			<Stack.Screen 
 				name="Home"
 				component={Home}
 			/>
 			<Stack.Screen 
-				name="profileRegister"
+				name={profileRegister.name}
 				component={profileRegister}
 				options={{ 
 					title: 'Cadastro Pessoal',
@@ -40,7 +34,7 @@ export default function App() {
 				}}
 			/>
 			<Stack.Screen 
-				name="loginError"
+				name={loginError.name}
 				component={loginError}
 				options={{ 
 					title: 'Cadastro',
@@ -50,9 +44,8 @@ export default function App() {
 					},
 				}}
 			/>
-		</Stack.Navigator>
-
-	</NavigationContainer>
+      <Stack.Screen name={petRegister.name} component={petRegister} />
+    </Stack.Navigator>
   );
 }
 
