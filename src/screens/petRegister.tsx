@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import {
   Button,
   DefaultTheme,
@@ -77,25 +77,33 @@ export default function PetRegister() {
             </ButtonBox>
             <Hr />
             <Title>Ajuda</Title>
-            <InputLabel>Nome do Animal</InputLabel>
-            <TextInput keyboardType="default" label="Nome do Animal" />
-            <PhotoInput />
-            <InputLabel>Espécie</InputLabel>
-            <RadioButtonGroup onValueChange={value => {}} value={''}>
-              <RadioButton label="Cachorro" value="cachoro" />
-              <RadioButton label="Gato" value="gato" />
-            </RadioButtonGroup>
-            <InputLabel>Sexo</InputLabel>
-            <RadioButtonGroup onValueChange={value => {}} value={''}>
-              <RadioButton label="Macho" value="macho" />
-              <RadioButton label="Fêmea" value="femea" />
-            </RadioButtonGroup>
-            <InputLabel>Porte</InputLabel>
-            <RadioButtonGroup onValueChange={value => {}} value={''}>
-              <RadioButton label="Pequeno" value="pequeno" />
-              <RadioButton label="Médio" value="medio" />
-              <RadioButton label="Grande" value="grande" />
-            </RadioButtonGroup>
+            <View>
+              <InputLabel>Nome do Animal</InputLabel>
+              <TextInput keyboardType="default" label="Nome do Animal" />
+              <PhotoInput />
+            </View>
+            <View>
+              <InputLabel>Espécie</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Cachorro" value="cachoro" />
+                <RadioButton label="Gato" value="gato" />
+              </RadioButtonGroup>
+            </View>
+            <View>
+              <InputLabel>Sexo</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Macho" value="macho" />
+                <RadioButton label="Fêmea" value="femea" />
+              </RadioButtonGroup>
+            </View>
+            <View>
+              <InputLabel>Porte</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Pequeno" value="pequeno" />
+                <RadioButton label="Médio" value="medio" />
+                <RadioButton label="Grande" value="grande" />
+              </RadioButtonGroup>
+            </View>
             <View>
               <InputLabel>Idade</InputLabel>
               <RadioButtonGroup onValueChange={value => {}} value={''}>
@@ -137,16 +145,3 @@ export default function PetRegister() {
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  radioGroup: {
-    flexDirection: 'row',
-  },
-  input: {
-    flex: 1,
-    width: 330,
-    margin: 10,
-    padding: 8,
-    height: 15,
-  },
-});
