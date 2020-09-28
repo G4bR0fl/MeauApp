@@ -5,7 +5,6 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Login from './login';
 import PetRegister from './petRegister';
-import Term from './term';
 
 const Stack = createStackNavigator();
 export default function Home({ navigation }) {
@@ -101,16 +100,6 @@ export default function Home({ navigation }) {
             <Text style={styles.textButton}>AJUDAR</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate(Term.name);
-          }}
-        >
-          <View style={styles.button} backgroundColor="#ffd358">
-            <Text style={styles.textButton}>TERM</Text>
-          </View>
-        </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             navigation.navigate(PetRegister.name);
