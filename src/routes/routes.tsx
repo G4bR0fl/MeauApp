@@ -7,6 +7,7 @@ import Login from '../screens/login';
 import loginError from '../screens/loginError';
 import petRegister from '../screens/petRegister';
 import profileRegister from '../screens/profileRegister';
+import Term from '../screens/term';
 
 const Stack = createStackNavigator();
 
@@ -91,6 +92,24 @@ export default function Routing() {
         name={petRegister.name}
         component={petRegister}
         options={greenHeader('Cadastro do Animal')}
+      />
+      <Stack.Screen
+        name={Term.name}
+        component={Term}
+        options={{
+          title: 'Termo de adoção',
+          headerStyle: {
+            backgroundColor: '#88c9bf',
+          },
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={24}
+              style={{ padding: 16, color: '#464646' }}
+            />
+          ),
+          headerTintColor: '#434343',
+        }}
       />
     </Stack.Navigator>
   );
