@@ -5,7 +5,7 @@ import { headerLeft } from './stack-util';
 
 const Stack = createStackNavigator();
 
-export default function UsuarioStack({ navigation }) {
+export default function ConfiguracoesStack({ navigation }) {
   return (
     <Stack.Navigator initialRouteName={Home.name}>
       <Stack.Screen

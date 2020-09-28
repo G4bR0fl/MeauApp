@@ -1,13 +1,29 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
+import { CustomDrawerContent } from '../components/DrawerContent';
+import AtalhosStack from './AtalhosStack';
+import ConfiguracoesStack from './ConfiguracoesStack';
+import InformacoesStack from './InformacoesStack';
 import UsuarioStack from './UsuarioStack';
 
-const DrawerNav = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
-export function Drawer() {
+export function Router() {
   return (
-    <DrawerNav.Navigator initialRouteName={UsuarioStack.name}>
-      <DrawerNav.Screen name={UsuarioStack.name} component={UsuarioStack} />
-    </DrawerNav.Navigator>
+    <Drawer.Navigator
+      initialRouteName={UsuarioStack.name}
+      drawerContent={CustomDrawerContent}
+    >
+      <Drawer.Screen name={UsuarioStack.name} component={UsuarioStack} />
+      <Drawer.Screen name={AtalhosStack.name} component={AtalhosStack} />
+      <Drawer.Screen
+        name={InformacoesStack.name}
+        component={InformacoesStack}
+      />
+      <Drawer.Screen
+        name={ConfiguracoesStack.name}
+        component={ConfiguracoesStack}
+      />
+    </Drawer.Navigator>
   );
 }

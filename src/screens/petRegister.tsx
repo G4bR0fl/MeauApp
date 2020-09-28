@@ -2,7 +2,6 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 import {
   Button,
-  DefaultTheme,
   Provider as PaperProvider,
   Text,
   TextInput,
@@ -15,16 +14,7 @@ import { InputLabel } from '../components/InputLabel';
 import { Container } from '../components/layout';
 import { PhotoInput } from '../components/PhotoInput';
 import { RadioButton, RadioButtonGroup } from '../components/RadioButtonGroup';
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#88c9bf',
-    accent: '#f1c40f',
-  },
-};
+import { theme } from '../components/theme';
 
 const ButtonBox = styled.View`
   width: 100%;
