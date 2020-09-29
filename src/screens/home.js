@@ -5,6 +5,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Login from './login';
 import PetRegister from './petRegister';
+import termError from './termError';
 
 const Stack = createStackNavigator();
 export default function Home({ navigation }) {
@@ -90,6 +91,12 @@ export default function Home({ navigation }) {
         <Text style={styles.textWelcome}>Qual o seu interesse?</Text>
       </View>
       <View style={styles.clickButtons}>
+        <TouchableOpacity onPress={() => navigation.navigate(termError.name)}>
+          <View style={styles.button} backgroundColor="#ffd358">
+            <Text style={styles.textButton}>termError</Text>
+          </View>
+        </TouchableOpacity>
+
         <TouchableOpacity>
           <View style={styles.button} backgroundColor="#ffd358">
             <Text style={styles.textButton}>ADOTAR</Text>

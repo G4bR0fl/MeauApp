@@ -8,7 +8,7 @@ import loginError from '../screens/loginError';
 import petRegister from '../screens/petRegister';
 import profileRegister from '../screens/profileRegister';
 import Term from '../screens/term';
-
+import termError from '../screens/termError';
 const Stack = createStackNavigator();
 
 const greenHeader = (title: string) => ({
@@ -109,6 +109,17 @@ export default function Routing() {
             />
           ),
           headerTintColor: '#434343',
+        }}
+      />
+
+      <Stack.Screen
+        name={termError.name}
+        component={termError}
+        options={{
+          title: 'Termo de adoção',
+          headerStyle: {
+            backgroundColor: '#cfe9e5',
+          },
         }}
       />
     </Stack.Navigator>
