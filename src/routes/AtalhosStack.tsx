@@ -5,14 +5,25 @@ import { greenHeader } from './stack-util';
 
 const Stack = createStackNavigator();
 
-export default function AtalhosStack() {
+const petRegisterRoute = {
+  title: 'Cadastro do Animal',
+  name: PetRegister.name,
+  component: PetRegister,
+};
+
+export default function AtalhosStack({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={PetRegister.name}
-        component={PetRegister}
-        options={greenHeader('Cadastro do Animal')}
+        name={petRegisterRoute.name}
+        component={petRegisterRoute.component}
+        options={greenHeader(petRegisterRoute.title)}
       />
     </Stack.Navigator>
   );
 }
+
+export const atalhosRoutes = {
+  label: 'Atalhos',
+  children: [petRegisterRoute],
+};

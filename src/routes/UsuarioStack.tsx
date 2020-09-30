@@ -16,7 +16,7 @@ export default function UsuarioStack({ navigation }) {
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerLeft,
+          headerLeft: headerLeft(navigation),
         }}
       />
     </Stack.Navigator>

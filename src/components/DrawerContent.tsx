@@ -6,6 +6,7 @@ import {
 import * as React from 'react';
 import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
+import { routes } from '../routes/drawer';
 import { theme } from './theme';
 
 const Avatar = styled.View`
@@ -16,19 +17,20 @@ const Avatar = styled.View`
 export function CustomDrawerContent(
   props: DrawerContentComponentProps<DrawerContentOptions>
 ) {
-  const [name, setName] = React.useState('Emile Caterine');
   return (
     <DrawerContentScrollView {...props}>
       <Avatar></Avatar>
-      <List.Section title="Accordions">
+      {routes.map(item => (
         <List.Accordion
-          title={name}
+          title={item.label}
+          key={item.label + '-root'}
           left={props => <List.Icon {...props} icon="folder" />}
         >
-          <List.Item title="First item" />
-          <List.Item title="Second item" />
+          {item.children.map(child => (
+            <List.Item title={child.title} key={child.title + '-root'} />
+          ))}
         </List.Accordion>
-      </List.Section>
+      ))}
     </DrawerContentScrollView>
   );
 }

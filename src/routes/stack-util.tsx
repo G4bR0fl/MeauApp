@@ -1,13 +1,16 @@
 import React from 'react';
 import { Icon } from 'react-native-elements';
 
-const headerLeft = () => (
+const headerLeft = navigation => () => (
   <Icon
     name="menu"
     size={24}
     style={{
       padding: 16,
       color: '#88c9bf',
+    }}
+    onPress={function () {
+      navigation.toogleDrawer();
     }}
   />
 );
@@ -18,7 +21,6 @@ const greenHeader = (title: string) => ({
   headerStyle: {
     backgroundColor: '#88c9bf',
   },
-  headerLeft,
 });
 
 export { headerLeft, greenHeader };

@@ -1,6 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Login from '../screens/login';
 import loginError from '../screens/loginError';
@@ -8,7 +7,7 @@ import profileRegister from '../screens/profileRegister';
 
 const Stack = createStackNavigator();
 
-export default function Routing() {
+export default function AtalhosStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -60,12 +59,3 @@ export default function Routing() {
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
