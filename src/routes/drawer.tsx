@@ -3,7 +3,7 @@ import * as React from 'react';
 import { CustomDrawerContent } from '../components/DrawerContent';
 import AtalhosStack from './AtalhosStack';
 import ConfiguracoesStack from './ConfiguracoesStack';
-import InformacoesStack from './InformacoesStack';
+import InformationsStack from './InformationsStack';
 import ProfileStack from './ProfileStack';
 
 const Drawer = createDrawerNavigator();
@@ -17,8 +17,8 @@ export function Router() {
       <Drawer.Screen name={ProfileStack.name} component={ProfileStack} />
       <Drawer.Screen name={AtalhosStack.name} component={AtalhosStack} />
       <Drawer.Screen
-        name={InformacoesStack.name}
-        component={InformacoesStack}
+        name={InformationsStack.name}
+        component={InformationsStack}
       />
       <Drawer.Screen
         name={ConfiguracoesStack.name}

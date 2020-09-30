@@ -9,13 +9,15 @@ import { Container } from '../components/layout';
 import { theme } from '../components/theme';
 
 
-export default function InfoAdoption() {
+export default function InfoEvents() {
     return (
         <PaperProvider theme={theme}>
             <ThemeProvider theme={theme}>
                 <ScrollView>
                     <Container>
-                        <Text>InfoAdoption</Text>
+                        <Text>InfoEvents
+                        
+                        </Text>
                     </Container>
                 </ScrollView>
             </ThemeProvider>
