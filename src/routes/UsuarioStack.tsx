@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import Home from '../screens/home';
-import { headerLeft } from './stack-util';
+import { headerLeft as drawerButton } from './stack-util';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,7 @@ export default function UsuarioStack({ navigation }) {
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerLeft: headerLeft(navigation),
+          headerLeft: drawerButton(navigation),
         }}
       />
     </Stack.Navigator>

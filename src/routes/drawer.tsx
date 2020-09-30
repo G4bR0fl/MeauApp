@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
 import { CustomDrawerContent } from '../components/DrawerContent';
-import AtalhosStack, { atalhosRoutes } from './AtalhosStack';
+import AtalhosStack from './AtalhosStack';
 import ConfiguracoesStack from './ConfiguracoesStack';
 import InformacoesStack from './InformacoesStack';
 import UsuarioStack from './UsuarioStack';
@@ -27,5 +27,3 @@ export function Router() {
     </Drawer.Navigator>
   );
 }
-
-export const routes = [atalhosRoutes];

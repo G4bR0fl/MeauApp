@@ -6,13 +6,15 @@ import {
 import * as React from 'react';
 import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { routes } from '../routes/drawer';
+import { atalhosRoutes } from '../routes/AtalhosStack';
 import { theme } from './theme';
 
 const Avatar = styled.View`
   height: 150px;
   background-color: ${theme.colors.primary};
 `;
+
+export const routes = [atalhosRoutes];
 
 export function CustomDrawerContent(
   props: DrawerContentComponentProps<DrawerContentOptions>
@@ -27,7 +29,7 @@ export function CustomDrawerContent(
           left={props => <List.Icon {...props} icon="folder" />}
         >
           {item.children.map(child => (
-            <List.Item title={child.title} key={child.title + '-root'} />
+            <List.Item title={child.label} key={child.label + '-root'} />
           ))}
         </List.Accordion>
       ))}

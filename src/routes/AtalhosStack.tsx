@@ -1,29 +1,53 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
+import PetAdoption from '../screens/petAdoption';
+import PetHelp from '../screens/petHelp';
+import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister';
 import { greenHeader } from './stack-util';
 
 const Stack = createStackNavigator();
 
-const petRegisterRoute = {
-  title: 'Cadastro do Animal',
-  name: PetRegister.name,
-  component: PetRegister,
+export const atalhosRoutes = {
+  label: 'Atalhos',
+  children: [
+    {
+      label: 'Cadastrar um pet',
+      title: 'Cadastro do Animal',
+      name: PetRegister.name,
+      component: PetRegister,
+    },
+    {
+      label: 'Adotar um pet',
+      title: 'Adotar',
+      name: PetAdoption.name,
+      component: PetAdoption,
+    },
+    {
+      label: 'Ajudar um pet',
+      title: 'Ajudar',
+      name: PetHelp.name,
+      component: PetHelp,
+    },
+    {
+      label: 'Apadinhar um pet',
+      title: 'Apadinhar',
+      name: PetPatronize.name,
+      component: PetPatronize,
+    },
+  ],
 };
 
 export default function AtalhosStack({ navigation }) {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name={petRegisterRoute.name}
-        component={petRegisterRoute.component}
-        options={greenHeader(petRegisterRoute.title)}
-      />
+      {atalhosRoutes.children.map(route => (
+        <Stack.Screen
+          name={route.name}
+          component={route.component}
+          options={greenHeader(route.title)}
+        />
+      ))}
     </Stack.Navigator>
   );
 }
-
-export const atalhosRoutes = {
-  label: 'Atalhos',
-  children: [petRegisterRoute],
-};
