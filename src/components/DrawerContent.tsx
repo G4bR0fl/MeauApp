@@ -7,6 +7,7 @@ import * as React from 'react';
 import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { atalhosRoutes } from '../routes/AtalhosStack';
+import { profileRoutes } from '../routes/ProfileStack';
 import { theme } from './theme';
 
 const Avatar = styled.View`
@@ -14,7 +15,7 @@ const Avatar = styled.View`
   background-color: ${theme.colors.primary};
 `;
 
-export const routes = [atalhosRoutes];
+export const routes = [atalhosRoutes, profileRoutes];
 
 export function CustomDrawerContent(
   props: DrawerContentComponentProps<DrawerContentOptions>
