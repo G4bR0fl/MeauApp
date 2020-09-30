@@ -9,13 +9,13 @@ import { Container } from '../components/layout';
 import { theme } from '../components/theme';
 
 
-export default function InfoAdoption() {
+export default function Config() {
     return (
         <PaperProvider theme={theme}>
             <ThemeProvider theme={theme}>
                 <ScrollView>
                     <Container>
-                        <Text>InfoAdoption
+                        <Text>Config
                         
                         </Text>
                     </Container>

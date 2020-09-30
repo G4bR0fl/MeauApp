@@ -5,7 +5,7 @@ import ProfileChat from '../screens/profileChat';
 import ProfileFavorites from '../screens/profileFavorites';
 import ProfilePets from '../screens/profilePets';
 import ProfileUser from '../screens/profileUser';
-import { headerLeft as drawerButton } from './stack-util';
+import { greenHeader, headerLeft as drawerButton } from './stack-util';
 
 const Stack = createStackNavigator();
 
@@ -16,8 +16,8 @@ export const profileRoutes = {
     {
       label: 'Meu perfil',
       title: 'UserName',
-      name: ProfileUser,
-      component: ProfileUser.name,
+      name: ProfileUser.name,
+      component: ProfileUser,
     },
     {
       label: 'Meus pets',
@@ -54,6 +54,14 @@ export default function ProfileStack({ navigation }) {
           headerLeft: drawerButton(navigation),
         }}
       />
+      {profileRoutes.children.map(route => (
+        <Stack.Screen
+          key={route.name}
+          name={route.name}
+          component={route.component}
+          options={greenHeader(route.title)}
+        />
+      ))}
     </Stack.Navigator>
   );
 }

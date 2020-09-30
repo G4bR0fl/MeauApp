@@ -44,6 +44,7 @@ export default function AtalhosStack({ navigation }) {
     <Stack.Navigator>
       {atalhosRoutes.children.map(route => (
         <Stack.Screen
+          key={route.name}
           name={route.name}
           component={route.component}
           options={greenHeader(route.title)}

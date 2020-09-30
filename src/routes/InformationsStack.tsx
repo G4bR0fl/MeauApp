@@ -1,24 +1,23 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import Home from '../screens/home';
 import InfoAdoptionHistories from '../screens/infoAdoptionHistories';
 import InfoEvents from '../screens/infoEvents';
 import InfoLegislation from '../screens/infoLegislation';
 import InfoTips from '../screens/infoTips';
 import InfoAdoption from '../screens/petHelp';
-import { headerLeft } from './stack-util';
+import { greenHeader } from './stack-util';
 
 const Stack = createStackNavigator();
 
-export const profileRoutes = {
+export const infoRoutes = {
   label: 'Informações',
   icon: 'folder',
   children: [
     {
       label: 'Dicas',
       title: 'Dicas',
-      name: InfoTips,
-      component: InfoTips.name,
+      name: InfoTips.name,
+      component: InfoTips,
     },
     {
       label: 'Eventos',
@@ -48,19 +47,17 @@ export const profileRoutes = {
 };
 
 export default function InformationsStack({ navigation }) {
+  const first = infoRoutes.children[0];
   return (
-    <Stack.Navigator initialRouteName={Home.name}>
-      <Stack.Screen
-        name={Home.name}
-        component={Home}
-        options={{
-          title: 'Home',
-          headerStyle: {
-            backgroundColor: 'white',
-          },
-          headerLeft,
-        }}
-      />
+    <Stack.Navigator initialRouteName={first.name}>
+      {infoRoutes.children.map(route => (
+        <Stack.Screen
+          key={route.name}
+          name={route.name}
+          component={route.component}
+          options={greenHeader(route.title)}
+        />
+      ))}
     </Stack.Navigator>
   );
 }
