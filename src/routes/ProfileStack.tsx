@@ -11,6 +11,7 @@ const Stack = createStackNavigator();
 
 export const profileRoutes = {
   label: 'Profile',
+  icon: 'folder',
   children: [
     {
       label: 'Meu perfil',

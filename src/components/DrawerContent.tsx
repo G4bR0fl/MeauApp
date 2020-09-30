@@ -27,7 +27,7 @@ export function CustomDrawerContent(
         <List.Accordion
           title={item.label}
           key={item.label + '-root'}
-          left={props => <List.Icon {...props} icon="folder" />}
+          left={props => <List.Icon {...props} icon={item.icon} />}
         >
           {item.children.map(child => (
             <List.Item title={child.label} key={child.label + '-root'} />
