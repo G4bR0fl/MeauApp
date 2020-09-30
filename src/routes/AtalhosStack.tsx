@@ -11,6 +11,7 @@ const Stack = createStackNavigator();
 export const atalhosRoutes = {
   label: 'Atalhos',
   icon: 'folder',
+  name: AtalhosStack.name,
   children: [
     {
       label: 'Cadastrar um pet',

@@ -12,6 +12,7 @@ const Stack = createStackNavigator();
 export const infoRoutes = {
   label: 'Informações',
   icon: 'folder',
+  name: InformationsStack.name,
   children: [
     {
       label: 'Dicas',

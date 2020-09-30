@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 export const configRoutes = {
   label: 'Configurações',
   icon: 'folder',
+  name: ConfigStack.name,
   children: [
     {
       label: 'Privacidade',

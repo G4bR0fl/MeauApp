@@ -36,7 +36,13 @@ export function CustomDrawerContent(
           left={props => <List.Icon {...props} icon={item.icon} />}
         >
           {item.children.map(child => (
-            <List.Item title={child.label} key={child.label + '-root'} />
+            <List.Item
+              title={child.label}
+              key={child.label + '-root'}
+              onPress={() =>
+                props.navigation.navigate(item.name, { screen: child.name })
+              }
+            />
           ))}
         </List.Accordion>
       ))}
