@@ -3,11 +3,9 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 import Home from "../screens/home";
-import Login from "../screens/login";
 import loginError from "../screens/loginError";
 import petRegister from "../screens/petRegister";
 import profileRegister from "../screens/profileRegister";
-
 const Stack = createStackNavigator();
 
 export default function Routing() {
@@ -38,24 +36,6 @@ export default function Routing() {
         component={profileRegister}
         options={{
           title: "Cadastro Pessoal",
-          headerStyle: {
-            backgroundColor: "#cfe9e5",
-          },
-          headerLeft: () => (
-            <Icon
-              name="menu"
-              size={24}
-              style={{ padding: 16, color: "#464646" }}
-            />
-          ),
-        }}
-      />
-
-      <Stack.Screen
-        name={Login.name}
-        component={Login}
-        options={{
-          title: "Login",
           headerStyle: {
             backgroundColor: "#cfe9e5",
           },

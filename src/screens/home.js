@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { AppLoading } from "expo";
 import { useFonts, Courgette_400Regular } from "@expo-google-fonts/courgette";
 import PetRegister from "./petRegister";
+import ProfileRegister from "./profileRegister";
 import { createStackNavigator } from "@react-navigation/stack";
-import Login from "./login";
 
 const Stack = createStackNavigator();
 export default function Home({ navigation }) {
@@ -110,14 +110,7 @@ export default function Home({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-      <Text
-        style={styles.loginLink}
-        onPress={() => {
-          navigation.navigate(Login.name);
-        }}
-      >
-        login
-      </Text>
+      <Text style={styles.loginLink}>login</Text>
       <Image
         style={styles.logo}
         source={require("../../assets/logo/meau_logo.png")}
