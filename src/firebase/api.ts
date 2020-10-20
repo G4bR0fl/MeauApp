@@ -1,5 +1,7 @@
 import * as firebase from 'firebase';
+import 'firebase/firestore';
 import FirebaseApp from './init';
+
 
 export const Api = {
     Auth: {
@@ -18,6 +20,16 @@ export const Api = {
         },
         async signOut() {
             return FirebaseApp.auth().signOut()
+        }
+    },
+    Database: {
+        async getPetToAdoption() {
+            const db = FirebaseApp.firestore().collection('pets')
+            return db.get()
+        },
+        async createPet(data: any) {
+            const db = FirebaseApp.firestore().collection('pets')
+            return db.add(data)
         }
     }
 }

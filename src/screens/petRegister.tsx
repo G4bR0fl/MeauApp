@@ -15,6 +15,8 @@ import { Container } from '../components/layout';
 import { PhotoInput } from '../components/PhotoInput';
 import { RadioButton, RadioButtonGroup } from '../components/RadioButtonGroup';
 import { theme } from '../components/theme';
+import { Api } from '../firebase/api';
+import Animal from '../firebase/models/Animal';
 
 const ButtonBox = styled.View`
   width: 100%;
@@ -53,6 +55,15 @@ export default function PetRegister() {
   ];
 
   const objetos = [{ label: 'Objetos', prop: 'objetos' }];
+
+  function onSubmit() {
+    Api.Database.createPet({
+      nome: 'Tirulipa',
+      especie: 'cachorro',
+      sexo: 'M',
+      porte: 'medio ',
+    } as Animal);
+  }
 
   return (
     <PaperProvider theme={theme}>
@@ -129,6 +140,10 @@ export default function PetRegister() {
               />
             </View>
             <Button mode="contained">Procurar ajuda</Button>
+
+            <Button mode="contained" onPress={onSubmit}>
+              Salvar
+            </Button>
           </Container>
         </ScrollView>
       </ThemeProvider>
