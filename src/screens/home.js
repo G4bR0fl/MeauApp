@@ -95,7 +95,7 @@ export default function Home({ navigation }) {
       <View style={styles.clickButtons}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(PetAdoption.name, { screen: AtalhosStack.name });
+            navigation.navigate(AtalhosStack.name, { screen: PetAdoption.name });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
@@ -113,7 +113,7 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(PetRegister.name, { screen: CadastroStack.name });
+            navigation.navigate(CadastroStack.name, { screen: PetRegister.name });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
