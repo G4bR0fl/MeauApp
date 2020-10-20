@@ -7,7 +7,7 @@ import profileRegister from '../screens/profileRegister';
 
 const Stack = createStackNavigator();
 
-export default function AtalhosStack() {
+export default function CadastroStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
