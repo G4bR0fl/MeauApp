@@ -3,8 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AppLoading } from 'expo';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Adotar from './adopt';
+import AtalhosStack from '../routes/AtalhosStack';
+import CadastroStack from '../routes/CadastroStack';
 import Login from './login';
+import PetAdoption from './petAdoption';
 import PetRegister from './petRegister';
 
 const Stack = createStackNavigator();
@@ -93,15 +95,12 @@ export default function Home({ navigation }) {
       <View style={styles.clickButtons}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(Adotar.name);
+            navigation.navigate(PetAdoption.name, { screen: AtalhosStack.name });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
             <Text
               style={styles.textButton}
-              onPress={() => {
-                navigation.navigate(Adotar.name);
-              }}
             >
               ADOTAR
             </Text>
@@ -114,7 +113,7 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(PetRegister.name);
+            navigation.navigate(PetRegister.name, { screen: CadastroStack.name });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
