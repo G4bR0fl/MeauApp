@@ -42,7 +42,7 @@ export const atalhosRoutes = {
 
 export default function AtalhosStack({ navigation }) {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={PetAdoption.name}>
       {atalhosRoutes.children.map(route => (
         <Stack.Screen
           key={route.name}
