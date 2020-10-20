@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>388247497471-nqijuq2nte5b32tse15khv6ip7skepst.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.388247497471-nqijuq2nte5b32tse15khv6ip7skepst</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>388247497471-hrlcgc33arup06bemkhps48dc61qvc6n.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB-byj8P0ZTeK-p7emGHN2V1E9-qWiIiZ4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>388247497471</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.unb.meau</string>
+	<key>PROJECT_ID</key>
+	<string>meau-app-819a0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>meau-app-819a0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:388247497471:ios:dd76c30c98a35e3863baca</string>
+	<key>DATABASE_URL</key>
+	<string>https://meau-app-819a0.firebaseio.com</string>
+</dict>
+</plist>

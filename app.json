@@ -17,7 +17,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.unb.meau",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "660966586783-lb791sef875mlbt2hs448dlpc8dkbhoo.apps.googleusercontent.com"
+        }
+      }
+    },
+    "android": {
+      "package": "com.unb.meau"
     },
     "web": {
       "favicon": "./assets/favicon.png"

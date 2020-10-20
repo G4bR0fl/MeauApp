@@ -1,15 +1,4 @@
-import React from "react";
 import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import {
-  useFonts,
   Roboto_100Thin,
   Roboto_100Thin_Italic,
   Roboto_300Light,
@@ -21,10 +10,31 @@ import {
   Roboto_700Bold,
   Roboto_700Bold_Italic,
   Roboto_900Black,
-  Roboto_900Black_Italic,
+  Roboto_900Black_Italic, useFonts
 } from "@expo-google-fonts/roboto";
+import React from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity, View
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Api } from '../firebase/api';
+import AuthContext from "../firebase/auth.context";
 
-const Login = () => {
+function Login({ navigation }) {
+
+  const auth = React.useContext(AuthContext);
+
+  onPress = () => {
+    Api.Auth.signInWithEmail({
+      email: username,
+      password: password
+    })
+  };
+
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   let [fontsLoaded] = useFonts({
@@ -42,51 +52,6 @@ const Login = () => {
     Roboto_900Black_Italic,
   });
 
-  const styles = StyleSheet.create({
-    headerBar: {
-      backgroundColor: "#b6edd9",
-      fontFamily: "Roboto_400Regular",
-    },
-    textInput: {
-      height: 50,
-      width: "80%",
-      alignSelf: "center",
-      borderBottomColor: "#e6e7e8",
-      borderBottomWidth: 1,
-      marginTop: 20,
-      fontFamily: "Roboto_400Regular",
-      color: "#575756",
-      fontSize: 14,
-    },
-    button: {
-      height: 50,
-      width: "60%",
-      alignSelf: "center",
-      alignContent: "center",
-      justifyContent: "center",
-      alignItems: "center",
-      marginBottom: 10,
-      borderRadius: 2,
-    },
-    textButton: {
-      alignContent: "center",
-      alignSelf: "center",
-      fontFamily: "Roboto_400Regular",
-    },
-    textButtonSocial: {
-      alignContent: "center",
-      alignSelf: "center",
-      fontFamily: "Roboto_400Regular",
-      color: "#f7f7f7",
-    },
-    spacing: {
-      marginBottom: 50,
-      marginTop: 64,
-    },
-    spacingSocial: {
-      marginTop: 70,
-    },
-  });
   if (!fontsLoaded) {
     return null;
   }
@@ -110,7 +75,8 @@ const Login = () => {
           onChangeText={(input) => setPassword(input)}
         />
       </View>
-      <TouchableOpacity>
+      <Text>{JSON.stringify(auth) + ' haha'}</Text>
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.button} backgroundColor="#88c9bf">
           <Text style={styles.textButton}>ENTRAR</Text>
         </View>
@@ -132,5 +98,51 @@ const Login = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  headerBar: {
+    backgroundColor: "#b6edd9",
+    fontFamily: "Roboto_400Regular",
+  },
+  textInput: {
+    height: 50,
+    width: "80%",
+    alignSelf: "center",
+    borderBottomColor: "#e6e7e8",
+    borderBottomWidth: 1,
+    marginTop: 20,
+    fontFamily: "Roboto_400Regular",
+    color: "#575756",
+    fontSize: 14,
+  },
+  button: {
+    height: 50,
+    width: "60%",
+    alignSelf: "center",
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+    borderRadius: 2,
+  },
+  textButton: {
+    alignContent: "center",
+    alignSelf: "center",
+    fontFamily: "Roboto_400Regular",
+  },
+  textButtonSocial: {
+    alignContent: "center",
+    alignSelf: "center",
+    fontFamily: "Roboto_400Regular",
+    color: "#f7f7f7",
+  },
+  spacing: {
+    marginBottom: 50,
+    marginTop: 64,
+  },
+  spacingSocial: {
+    marginTop: 70,
+  },
+});
 
 export default Login;
