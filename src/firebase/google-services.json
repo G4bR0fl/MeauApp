@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660966586783",
+    "firebase_url": "https://supple-cabinet-292611.firebaseio.com",
+    "project_id": "supple-cabinet-292611",
+    "storage_bucket": "supple-cabinet-292611.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660966586783:android:4bd5d17bf2a80374b0a5aa",
+        "android_client_info": {
+          "package_name": "com.unb.meau"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660966586783-gnp7mmtv8s1kbaic17i1p9ikst9suc9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFpLZShMr6PC0D20VR980W26h1tztQ3cM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660966586783-gnp7mmtv8s1kbaic17i1p9ikst9suc9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { CustomDrawerContent } from '../components/DrawerContent';
+import AuthContext from '../firebase/auth.context';
 import Login from '../screens/login';
 import AtalhosStack from './AtalhosStack';
 import ConfigStack from './ConfigStack';
@@ -12,12 +13,12 @@ const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
 
-const isSignedIn = false;
-
 const loginOptions = { headerShown: false };
 
 export function Router() {
-  return isSignedIn ? (
+  const auth = React.useContext(AuthContext);
+
+  return !!auth ? (
     <Drawer.Navigator
       initialRouteName={ProfileStack.name}
       drawerContent={CustomDrawerContent}
