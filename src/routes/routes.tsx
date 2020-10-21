@@ -1,12 +1,14 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Icon } from "react-native-elements";
-import Home from "../screens/home";
-import Login from "../screens/login";
-import loginError from "../screens/loginError";
-import petRegister from "../screens/petRegister";
-import profileRegister from "../screens/profileRegister";
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
+import Adopt from '../screens/adopt';
+import Home from '../screens/home';
+import Login from '../screens/login';
+import loginError from '../screens/loginError';
+import PetAdopt from '../screens/petAdopt';
+import petRegister from '../screens/petRegister';
+import profileRegister from '../screens/profileRegister';
 
 const Stack = createStackNavigator();
 
@@ -17,9 +19,9 @@ export default function Routing() {
         name={Home.name}
         component={Home}
         options={{
-          title: "Home",
+          title: 'Home',
           headerStyle: {
-            backgroundColor: "white",
+            backgroundColor: 'white',
           },
           headerLeft: () => (
             <Icon
@@ -27,7 +29,7 @@ export default function Routing() {
               size={24}
               style={{
                 padding: 16,
-                color: "#88c9bf",
+                color: '#88c9bf',
               }}
             />
           ),
@@ -37,15 +39,15 @@ export default function Routing() {
         name={profileRegister.name}
         component={profileRegister}
         options={{
-          title: "Cadastro Pessoal",
+          title: 'Cadastro Pessoal',
           headerStyle: {
-            backgroundColor: "#cfe9e5",
+            backgroundColor: '#cfe9e5',
           },
           headerLeft: () => (
             <Icon
               name="menu"
               size={24}
-              style={{ padding: 16, color: "#464646" }}
+              style={{ padding: 16, color: '#464646' }}
             />
           ),
         }}
@@ -55,15 +57,15 @@ export default function Routing() {
         name={Login.name}
         component={Login}
         options={{
-          title: "Login",
+          title: 'Login',
           headerStyle: {
-            backgroundColor: "#cfe9e5",
+            backgroundColor: '#cfe9e5',
           },
           headerLeft: () => (
             <Icon
               name="menu"
               size={24}
-              style={{ padding: 16, color: "#464646" }}
+              style={{ padding: 16, color: '#464646' }}
             />
           ),
         }}
@@ -72,14 +74,55 @@ export default function Routing() {
         name={loginError.name}
         component={loginError}
         options={{
-          title: "Cadastro",
-          headerTintColor: "#434343",
+          title: 'Cadastro',
+          headerTintColor: '#434343',
           headerStyle: {
-            backgroundColor: "#88c9bf",
+            backgroundColor: '#88c9bf',
           },
         }}
       />
       <Stack.Screen name={petRegister.name} component={petRegister} />
+      <Stack.Screen
+        name={Adopt.name}
+        component={Adopt}
+        options={{
+          title: 'Adotar',
+          headerStyle: {
+            backgroundColor: '#ffd358',
+          },
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={24}
+              style={{ padding: 16, color: '#464646' }}
+            />
+          ),
+          headerRight: () => (
+            <Icon
+              name="search"
+              size={24}
+              style={{ padding: 16, color: '#464646' }}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name={PetAdopt.name}
+        component={PetAdopt}
+        options={{
+          title: 'Pequi',
+          headerStyle: {
+            backgroundColor: '#ffd358',
+          },
+          headerRight: () => (
+            <Icon
+              name="share"
+              size={24}
+              style={{ padding: 16, color: '#464646' }}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -87,8 +130,8 @@ export default function Routing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
