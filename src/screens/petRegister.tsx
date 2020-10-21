@@ -1,28 +1,20 @@
-import React from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import React from 'react';
+import { ScrollView, View } from 'react-native';
 import {
   Button,
-  RadioButton,
-  TextInput,
   Provider as PaperProvider,
-  DefaultTheme,
-} from "react-native-paper";
-import styled from "styled-components/native";
-import { Container } from "../components/layout";
-import CheckboxGroup from "../components/CheckboxGroup";
-import Hr from "../components/Hr";
-import { PhotoInput } from "../components/PhotoInput";
-import { ThemeProvider } from "@react-navigation/native";
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: "#88c9bf",
-    accent: "#f1c40f",
-  },
-};
+  Text,
+  TextInput,
+} from 'react-native-paper';
+import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components/native';
+import CheckboxGroup from '../components/CheckboxGroup';
+import Hr from '../components/Hr';
+import { InputLabel } from '../components/InputLabel';
+import { Container } from '../components/layout';
+import { PhotoInput } from '../components/PhotoInput';
+import { RadioButton, RadioButtonGroup } from '../components/RadioButtonGroup';
+import { theme } from '../components/theme';
 
 const ButtonBox = styled.View`
   width: 100%;
@@ -38,172 +30,108 @@ const Title = styled.Text`
 `;
 
 export default function PetRegister() {
-  const InputLabel = styled.Text`
-    text-transform: uppercase;
-    margin-top: 7px;
-    margin-bottom: 10px;
-    color: ${(props) => JSON.stringify(props)};
-  `;
   const temperamentos = [
-    { label: "Brincalhão", prop: "brincalhao" },
-    { label: "Tímido", prop: "timido" },
-    { label: "Calmo", prop: "calmo" },
-    { label: "Guarda", prop: "guarda" },
-    { label: "Amoroso", prop: "amoroso" },
-    { label: "Preguiçoso", prop: "preguicoso" },
+    { label: 'Brincalhão', prop: 'brincalhao' },
+    { label: 'Tímido', prop: 'timido' },
+    { label: 'Calmo', prop: 'calmo' },
+    { label: 'Guarda', prop: 'guarda' },
+    { label: 'Amoroso', prop: 'amoroso' },
+    { label: 'Preguiçoso', prop: 'preguicoso' },
   ];
 
   const saude = [
-    { label: "Vacinado", prop: "vacinado" },
-    { label: "Vermifugado", prop: "vermifugado" },
-    { label: "castrado", prop: "castrado" },
-    { label: "Doente", prop: "doente" },
+    { label: 'Vacinado', prop: 'vacinado' },
+    { label: 'Vermifugado', prop: 'vermifugado' },
+    { label: 'Castrado', prop: 'castrado' },
+    { label: 'Doente', prop: 'doente' },
   ];
 
-  const invertTheme = {};
+  const necessidades = [
+    { label: 'Alimento', prop: 'alimento' },
+    { label: 'Auxilio Financeiro', prop: 'financeiro' },
+    { label: 'Medicamento', prop: 'medicamento' },
+  ];
+
+  const objetos = [{ label: 'Objetos', prop: 'objetos' }];
 
   return (
     <PaperProvider theme={theme}>
-      <ScrollView>
-        <Container>
-          <Text>Tenho interesse em cadastrar o animal para </Text>
-          <ButtonBox>
-            <Button mode="contained">Adoção</Button>
-            <Button mode="contained">Apadrinhar</Button>
-            <Button mode="contained">Ajuda</Button>
-          </ButtonBox>
-          <Hr />
-          <Title>Ajuda</Title>
-            <InputLabel>Nome do Animal</InputLabel>
-          <TextInput keyboardType="default" label="Nome do Animal" />
-          <PhotoInput />
-          <RadioButton.Group onValueChange={(value) => {}} value={""}>
-            <View style={styles.radioGroup}>
-              <Text>Espécie</Text>
-              <View>
-                <Text>Cachorro</Text>
-                <RadioButton value="first" />
-              </View>
-              <View>
-                <Text>Gato</Text>
-                <RadioButton value="second" />
-              </View>
+      <ThemeProvider theme={theme}>
+        <ScrollView>
+          <Container>
+            <Text>Tenho interesse em cadastrar o animal para </Text>
+            <ButtonBox>
+              <Button mode="contained">Adoção</Button>
+              <Button mode="contained">Apadrinhar</Button>
+              <Button mode="contained">Ajuda</Button>
+            </ButtonBox>
+            <Hr />
+            <Title>Ajuda</Title>
+            <View>
+              <InputLabel>Nome do Animal</InputLabel>
+              <TextInput keyboardType="default" label="Nome do Animal" />
+              <PhotoInput />
             </View>
-          </RadioButton.Group>
-          <RadioButton.Group onValueChange={(value) => {}} value={""}>
-            <Text>Sexo</Text>
-            <View style={styles.radioGroup}>
-              <View>
-                <Text>Macho</Text>
-                <RadioButton value="first" />
-              </View>
-              <View>
-                <Text>Fêmea</Text>
-                <RadioButton value="second" />
-              </View>
+            <View>
+              <InputLabel>Espécie</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Cachorro" value="cachoro" />
+                <RadioButton label="Gato" value="gato" />
+              </RadioButtonGroup>
             </View>
-          </RadioButton.Group>
-          <RadioButton.Group onValueChange={(value) => {}} value={""}>
-            <Text>Porte</Text>
-            <View style={styles.radioGroup}>
-              <View>
-                <Text>Pequeno</Text>
-                <RadioButton value="first" />
-              </View>
-              <View>
-                <Text>Médio</Text>
-                <RadioButton value="second" />
-              </View>
-              <View>
-                <Text>Grande</Text>
-                <RadioButton value="second" />
-              </View>
+            <View>
+              <InputLabel>Sexo</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Macho" value="macho" />
+                <RadioButton label="Fêmea" value="femea" />
+              </RadioButtonGroup>
             </View>
-          </RadioButton.Group>
-          <RadioButton.Group onValueChange={(value) => {}} value={""}>
-            <Text>Idade</Text>
-            <View style={styles.radioGroup}>
-              <View>
-                <Text>Filhote</Text>
-                <RadioButton value="first" />
-              </View>
-              <View>
-                <Text>Adulto</Text>
-                <RadioButton value="second" />
-              </View>
-              <View>
-                <Text>Idoso</Text>
-                <RadioButton value="second" />
-              </View>
+            <View>
+              <InputLabel>Porte</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Pequeno" value="pequeno" />
+                <RadioButton label="Médio" value="medio" />
+                <RadioButton label="Grande" value="grande" />
+              </RadioButtonGroup>
             </View>
-          </RadioButton.Group>
-          <RadioButton.Group onValueChange={(value) => {}} value={""}>
-            <Text>Temperamento</Text>
-            <View style={styles.radioGroup}>
-              <View>
-                <Text>Pequeno</Text>
-                <RadioButton value="first" />
-              </View>
-              <View>
-                <Text>Médio</Text>
-                <RadioButton value="second" />
-              </View>
-              <View>
-                <Text>Grande</Text>
-                <RadioButton value="second" />
-              </View>
+            <View>
+              <InputLabel>Idade</InputLabel>
+              <RadioButtonGroup onValueChange={value => {}} value={''}>
+                <RadioButton label="Filhote" value="filhote" />
+                <RadioButton label="Adulto" value="adulto" />
+                <RadioButton label="Idoso" value="idoso" />
+              </RadioButtonGroup>
             </View>
-          </RadioButton.Group>
-          <View>
-            <Text>Temperamento</Text>
-            <CheckboxGroup elements={temperamentos} />
-          </View>
-          <View>
-            <Text>Saúde</Text>
-            <CheckboxGroup elements={saude} />
-            <TextInput
-              style={styles.input}
-              keyboardType="default"
-              label="Doenças do Animal"
-            />
-          </View>
-          <View>
-            <Text>Necessidades do Animal</Text>
-            <CheckboxGroup elements={temperamentos} />
-            <TextInput
-              style={styles.input}
-              keyboardType="default"
-              label="Nome do Medicamento"
-            />
-            <TextInput
-              style={styles.input}
-              keyboardType="default"
-              label="Especifique o(s) objeto(o)"
-            />
-          </View>
-          <View>
-            <Text>Sobre o animal</Text>
-            <TextInput
-              style={styles.input}
-              keyboardType="default"
-              label="Especifique o(s) objeto(o)"
-            />
-          </View>
-        </Container>
-      </ScrollView>
+            <View>
+              <InputLabel>Temperamento</InputLabel>
+              <CheckboxGroup elements={temperamentos} />
+            </View>
+            <View>
+              <InputLabel>Saúde</InputLabel>
+              <CheckboxGroup elements={saude} />
+              <TextInput keyboardType="default" label="Doenças do Animal" />
+            </View>
+            <View>
+              <InputLabel>Necessidade do Animal</InputLabel>
+              <CheckboxGroup elements={necessidades} />
+              <TextInput keyboardType="default" label="Nome do Medicamento" />
+              <CheckboxGroup elements={objetos} />
+              <TextInput
+                keyboardType="default"
+                label="Especifique o(s) objeto(o)"
+              />
+            </View>
+            <View>
+              <InputLabel>Sobre o animal</InputLabel>
+              <TextInput
+                keyboardType="default"
+                label="Especifique o(s) objeto(o)"
+              />
+            </View>
+            <Button mode="contained">Procurar ajuda</Button>
+          </Container>
+        </ScrollView>
+      </ThemeProvider>
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  radioGroup: {
-    flexDirection: "row",
-  },
-  input: {
-    flex: 1,
-    width: 330,
-    margin: 10,
-    padding: 8,
-    height: 15,
-  },
-});
