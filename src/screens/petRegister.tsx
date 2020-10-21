@@ -1,4 +1,5 @@
 import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import {
   Button,
@@ -32,6 +33,8 @@ const Title = styled.Text`
 `;
 
 export default function PetRegister() {
+  const { control, handleSubmit, errors } = useForm();
+
   const temperamentos = [
     { label: 'Brincalhão', prop: 'brincalhao' },
     { label: 'Tímido', prop: 'timido' },
@@ -56,13 +59,8 @@ export default function PetRegister() {
 
   const objetos = [{ label: 'Objetos', prop: 'objetos' }];
 
-  function onSubmit() {
-    Api.Database.createPet({
-      nome: 'Tirulipa',
-      especie: 'cachorro',
-      sexo: 'M',
-      porte: 'medio ',
-    } as Animal);
+  function onSubmit(data: Animal) {
+    Api.Database.createPet(data);
   }
 
   return (
@@ -71,24 +69,57 @@ export default function PetRegister() {
         <ScrollView>
           <Container>
             <Text>Tenho interesse em cadastrar o animal para </Text>
-            <ButtonBox>
-              <Button mode="contained">Adoção</Button>
-              <Button mode="contained">Apadrinhar</Button>
-              <Button mode="contained">Ajuda</Button>
-            </ButtonBox>
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <ButtonBox
+                //onChangeText={value => onChange(value)}
+                //value={value}
+                >
+                  <Button mode="contained">Adoção</Button>
+                  <Button mode="contained">Apadrinhar</Button>
+                  <Button mode="contained">Ajuda</Button>
+                </ButtonBox>
+              )}
+              name="interesse"
+              defaultValue=""
+            />
             <Hr />
             <Title>Ajuda</Title>
             <View>
               <InputLabel>Nome do Animal</InputLabel>
-              <TextInput keyboardType="default" label="Nome do Animal" />
-              <PhotoInput />
+              <Controller
+                control={control}
+                render={({ onChange, onBlur, value }) => (
+                  <TextInput
+                    keyboardType="default"
+                    label="Nome do Animal"
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                  />
+                )}
+                name="nome"
+                defaultValue=""
+              />
             </View>
+            <PhotoInput />
             <View>
               <InputLabel>Espécie</InputLabel>
-              <RadioButtonGroup onValueChange={value => {}} value={''}>
-                <RadioButton label="Cachorro" value="cachoro" />
-                <RadioButton label="Gato" value="gato" />
-              </RadioButtonGroup>
+              <Controller
+                control={control}
+                render={({ onChange, onBlur, value }) => (
+                  <RadioButtonGroup
+                    onValueChange={value => onChange(value)}
+                    value={value}
+                  >
+                    <RadioButton label="Cachorro" value="cachoro" />
+                    <RadioButton label="Gato" value="gato" />
+                  </RadioButtonGroup>
+                )}
+                name="especie"
+                defaultValue=""
+              />
             </View>
             <View>
               <InputLabel>Sexo</InputLabel>
@@ -141,7 +172,7 @@ export default function PetRegister() {
             </View>
             <Button mode="contained">Procurar ajuda</Button>
 
-            <Button mode="contained" onPress={onSubmit}>
+            <Button mode="contained" onPress={handleSubmit(onSubmit)}>
               Salvar
             </Button>
           </Container>
