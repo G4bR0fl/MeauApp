@@ -3,7 +3,6 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import Login from '../screens/login';
 import loginError from '../screens/loginError';
-import profileRegister from '../screens/profileRegister';
 
 const Stack = createStackNavigator();
 

@@ -95,15 +95,13 @@ export default function Home({ navigation }) {
       <View style={styles.clickButtons}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(AtalhosStack.name, { screen: PetAdoption.name });
+            navigation.navigate(AtalhosStack.name, {
+              screen: PetAdoption.name,
+            });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
-            <Text
-              style={styles.textButton}
-            >
-              ADOTAR
-            </Text>
+            <Text style={styles.textButton}>ADOTAR</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -113,7 +111,9 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(CadastroStack.name, { screen: PetRegister.name });
+            navigation.navigate(CadastroStack.name, {
+              screen: PetRegister.name,
+            });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">

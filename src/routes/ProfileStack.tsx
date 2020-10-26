@@ -4,6 +4,7 @@ import Home from '../screens/home';
 import ProfileChat from '../screens/profileChat';
 import ProfileFavorites from '../screens/profileFavorites';
 import ProfilePets from '../screens/profilePets';
+import profileRegister from '../screens/profileRegister';
 import ProfileUser from '../screens/profileUser';
 import { greenHeader, headerLeft as drawerButton } from './stack-util';
 
@@ -37,6 +38,12 @@ export const profileRoutes = {
       title: 'Chat',
       name: ProfileChat.name,
       component: ProfileChat,
+    },
+    {
+      label: 'tempRegister',
+      title: 'tempRegister',
+      name: profileRegister.name,
+      component: profileRegister,
     },
   ],
 };
