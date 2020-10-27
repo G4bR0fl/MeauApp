@@ -8,7 +8,15 @@ interface Item {
   prop: string;
 }
 
-export default function CheckboxGroup({ elements }: { elements: Item[] }) {
+export default function CheckboxGroup({
+  elements,
+  value,
+  onChange,
+}: {
+  elements: Item[];
+  value?: any;
+  onChange?: (value: string) => void;
+}) {
   const [state, setState] = useState<any>({});
 
   function markProp(prop: string) {
@@ -17,6 +25,7 @@ export default function CheckboxGroup({ elements }: { elements: Item[] }) {
       ...state,
       [prop]: !value,
     });
+    onChange && onChange(state);
   }
 
   return (

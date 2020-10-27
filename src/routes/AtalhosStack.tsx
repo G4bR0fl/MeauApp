@@ -3,7 +3,7 @@ import React from 'react';
 import PetAdoption from '../screens/petAdoption';
 import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
-import PetRegister from '../screens/petRegister';
+import PetRegister from '../screens/petRegister/petRegister';
 import { greenHeader } from './stack-util';
 
 const Stack = createStackNavigator();

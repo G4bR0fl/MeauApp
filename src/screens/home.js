@@ -4,10 +4,9 @@ import { AppLoading } from 'expo';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AtalhosStack from '../routes/AtalhosStack';
-import CadastroStack from '../routes/CadastroStack';
 import Login from './login';
 import PetAdoption from './petAdoption';
-import PetRegister from './petRegister';
+import PetRegister from './petRegister/petRegister';
 
 const Stack = createStackNavigator();
 export default function Home({ navigation }) {
@@ -113,7 +112,7 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(CadastroStack.name, { screen: PetRegister.name });
+            navigation.navigate(AtalhosStack.name, { screen: PetRegister.name });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
