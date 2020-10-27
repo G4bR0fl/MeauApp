@@ -29,7 +29,15 @@ export function RadioButton({
   );
 }
 
-export function RadioButtonGroup({ onValueChange, value, children }: any) {
+export function RadioButtonGroup({
+  onValueChange,
+  value,
+  children,
+}: {
+  onValueChange: (value: string) => void;
+  value: any;
+  children: any;
+}) {
   return (
     <PaperRadioButton.Group onValueChange={onValueChange} value={value}>
       <Container>{children}</Container>
