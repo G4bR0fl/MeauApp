@@ -6,9 +6,9 @@ import {
 } from '@expo-google-fonts/roboto';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppLoading } from 'expo';
+import 'firebase/firestore';
 import React, { useState } from 'react';
 import {
-  Button,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -59,6 +59,7 @@ export default function profileRegister({ navigation }) {
     if (password === passwordConfirmation) {
       Api.Database.createUser(data);
       console.log('User criado com sucesso!');
+      Api.Database.getUsers();
     } else {
       console.log('Senhas diferentes, user não foi criado');
     }
@@ -170,8 +171,6 @@ export default function profileRegister({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-
-      <Button title="Go back" onPress={() => navigation.goBack()} />
     </ScrollView>
   );
 }

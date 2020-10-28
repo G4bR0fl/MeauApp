@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AuthContext.Provider value={auth}>
+      <AuthContext.Provider value={true}>
         <Router />
       </AuthContext.Provider>
     </NavigationContainer>

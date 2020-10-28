@@ -38,10 +38,25 @@ export const Api = {
       const db = FirebaseApp.firestore().collection('pets');
       return db.add(data);
     },
+    // Query que puxa todos os atributos de todos IDs do documento /users
+    async getUsers() {
+      FirebaseApp.firestore()
+        .collection('users')
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            console.log(doc.id, '=>', doc.data());
+          });
+        });
+    },
+    // Compara user atual com existente
+    // async checkUsers(){
+    //     var user = FirebaseApp.firestore().collection('users');
+    // },
+    // Criação de usuário
     async createUser(data: Pessoa) {
       const db = FirebaseApp.firestore().collection('users');
       return db.add(data);
     },
   },
 };
-FirebaseApp;
