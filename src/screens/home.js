@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AtalhosStack from '../routes/AtalhosStack';
-import Login from './login';
 import PetAdoption from './petAdoption';
 import PetRegister from './petRegister/petRegister';
 
@@ -111,14 +110,6 @@ export default function Home({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-      <Text
-        style={styles.loginLink}
-        onPress={() => {
-          navigation.navigate(Login.name);
-        }}
-      >
-        login
-      </Text>
       <Image
         style={styles.logo}
         source={require('../../assets/logo/meau_logo.png')}
