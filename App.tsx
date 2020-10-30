@@ -12,10 +12,10 @@ import {
   Roboto_700Bold_Italic,
   Roboto_900Black,
   Roboto_900Black_Italic,
-  useFonts,
 } from '@expo-google-fonts/roboto';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppLoading } from 'expo';
+import { useFonts } from 'expo-font';
 import React, { useState } from 'react';
 import 'react-native-gesture-handler';
 import AuthContext from './src/firebase/auth.context';
