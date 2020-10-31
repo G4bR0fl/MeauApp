@@ -1,18 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
-import styled from 'styled-components/native';
+import { BigTitle } from '../../components/BigTitle';
 import { Api } from '../../firebase/api';
 import Animal from '../../firebase/models/Animal';
-
-const BigTitle = styled.Text`
-  font-family: 'Courgette_400Regular';
-  font-size: 72px;
-  margin-top: 56px;
-  margin-bottom: 52px;
-  text-align: center;
-  color: #88c9bf;
-`;
 
 export default function PetRegisterSucess() {
   function onSubmit(data: Animal) {
