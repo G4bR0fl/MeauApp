@@ -48,7 +48,6 @@ export default function ProfileStack({ navigation }) {
         name={Home.name}
         component={Home}
         options={{
-          title: 'Home',
           headerStyle: {
             backgroundColor: 'white',
           },
