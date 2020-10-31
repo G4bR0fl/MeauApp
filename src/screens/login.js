@@ -1,26 +1,15 @@
-import {
-  Roboto_100Thin,
-  Roboto_100Thin_Italic,
-  Roboto_300Light,
-  Roboto_300Light_Italic,
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_500Medium,
-  Roboto_500Medium_Italic,
-  Roboto_700Bold,
-  Roboto_700Bold_Italic,
-  Roboto_900Black,
-  Roboto_900Black_Italic, useFonts
-} from "@expo-google-fonts/roboto";
 import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity, View
 } from "react-native";
+import { Button, Provider as PaperProvider, TextInput } from 'react-native-paper';
 import Icon from "react-native-vector-icons/FontAwesome";
+import { ThemeProvider } from 'styled-components';
+import AppLogo from '../components/Logo';
+import { theme } from '../components/theme';
 import { Api } from '../firebase/api';
 import AuthContext from "../firebase/auth.context";
 
@@ -37,93 +26,80 @@ function Login({ navigation }) {
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  let [fontsLoaded] = useFonts({
-    Roboto_100Thin,
-    Roboto_100Thin_Italic,
-    Roboto_300Light,
-    Roboto_300Light_Italic,
-    Roboto_400Regular,
-    Roboto_400Regular_Italic,
-    Roboto_500Medium,
-    Roboto_500Medium_Italic,
-    Roboto_700Bold,
-    Roboto_700Bold_Italic,
-    Roboto_900Black,
-    Roboto_900Black_Italic,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   return (
-    <SafeAreaView>
-      <View style={styles.spacing}>
-        <TextInput
-          placeholder="Nome de usuário"
-          style={styles.textInput}
-          value={username}
-          textContentType="username"
-          onChangeText={(input) => setUsername(input)}
-        />
-        <TextInput
-          placeholder="Senha"
-          style={styles.textInput}
-          value={password}
-          secureTextEntry={true}
-          textContentType="password"
-          onChangeText={(input) => setPassword(input)}
-        />
-      </View>
-      <Text>{JSON.stringify(auth) + ' haha'}</Text>
-      <TouchableOpacity onPress={onPress}>
-        <View style={styles.button} backgroundColor="#88c9bf">
-          <Text style={styles.textButton}>ENTRAR</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.spacingSocial}>
-        <View style={styles.button} backgroundColor="#194f7c">
-          <Icon name="facebook-square" color="white">
-            <Text style={styles.textButtonSocial}> ENTRAR COM FACEBOOK</Text>
-          </Icon>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View style={styles.button} backgroundColor="#f15f5c">
-          <Icon name="google-plus" color="white">
-            <Text style={styles.textButtonSocial}> ENTRAR COM GOOGLE</Text>
-          </Icon>
-        </View>
-      </TouchableOpacity>
-    </SafeAreaView>
+    <PaperProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <SafeAreaView style={styles.container}>
+          <AppLogo />
+          <View style={styles.spacing}>
+            <TextInput
+              style={styles.textInput}
+              label="Nome de usuário"
+              value={username}
+              textContentType="username"
+              onChangeText={(input) => setUsername(input)}
+            />
+            <TextInput
+              style={styles.textInput}
+              label="Senha"
+              value={password}
+              secureTextEntry={true}
+              textContentType="password"
+              onChangeText={(input) => setPassword(input)}
+            />
+          </View>
+          <Button style={styles.button2} mode="contained" onPress={onPress}>
+            Entrar
+          </Button>
+          <TouchableOpacity style={styles.spacingSocial}>
+            <View style={styles.button} backgroundColor="#194f7c">
+              <Icon name="facebook-square" color="white">
+                <Text style={styles.textButtonSocial}> ENTRAR COM FACEBOOK</Text>
+              </Icon>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.button} backgroundColor="#f15f5c">
+              <Icon name="google-plus" color="white">
+                <Text style={styles.textButtonSocial}> ENTRAR COM GOOGLE</Text>
+              </Icon>
+            </View>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ThemeProvider>
+    </PaperProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  headerBar: {
-    backgroundColor: "#b6edd9",
-    fontFamily: "Roboto_400Regular",
+  container: {
+    paddingTop: 80,
+    paddingLeft: 50,
+    paddingRight: 50,
   },
   textInput: {
-    height: 50,
-    width: "80%",
-    alignSelf: "center",
-    borderBottomColor: "#e6e7e8",
     borderBottomWidth: 1,
-    marginTop: 20,
-    fontFamily: "Roboto_400Regular",
-    color: "#575756",
-    fontSize: 14,
+    marginBottom: 20
   },
   button: {
     height: 50,
-    width: "60%",
+    width: "80%",
     alignSelf: "center",
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
     borderRadius: 2,
+  },
+  button2: {
+    height: 50,
+    width: "80%",
+    alignSelf: "center",
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
   },
   textButton: {
     alignContent: "center",
@@ -138,7 +114,7 @@ const styles = StyleSheet.create({
   },
   spacing: {
     marginBottom: 50,
-    marginTop: 64,
+    marginTop: 50,
   },
   spacingSocial: {
     marginTop: 70,

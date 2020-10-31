@@ -1,6 +1,5 @@
-import { Courgette_400Regular, useFonts } from '@expo-google-fonts/courgette';
+
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppLoading } from 'expo';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AtalhosStack from '../routes/AtalhosStack';
@@ -10,10 +9,6 @@ import PetRegister from './petRegister/petRegister';
 
 const Stack = createStackNavigator();
 export default function Home({ navigation }) {
-  let [fontsLoaded] = useFonts({
-    Courgette_400Regular,
-  });
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -74,10 +69,6 @@ export default function Home({ navigation }) {
       color: '#88c9bf',
     },
   });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   return (
     <View style={styles.container}>

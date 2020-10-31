@@ -1,10 +1,4 @@
-import {
-  Roboto_400Regular,
-  Roboto_500Medium,
-  useFonts
-} from '@expo-google-fonts/roboto';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppLoading } from 'expo';
 import React from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -29,15 +23,6 @@ export default function PetAdoption({ navigation }) {
     font-weight: 600;
     margin: 10px 0px;
   `;
-
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   const styles = StyleSheet.create({
     container: {

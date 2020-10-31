@@ -1,39 +1,13 @@
-import { Courgette_400Regular } from '@expo-google-fonts/courgette';
-import {
-  Roboto_400Regular,
-  Roboto_500Medium,
-  useFonts,
-} from '@expo-google-fonts/roboto';
-import { AppLoading } from 'expo';
 import React from 'react';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
-import styled from 'styled-components/native';
+import { BigTitle } from '../../components/BigTitle';
 import { Api } from '../../firebase/api';
 import Animal from '../../firebase/models/Animal';
 
-const BigTitle = styled.Text`
-  font-family: 'Courgette_400Regular';
-  font-size: 72px;
-  margin-top: 56px;
-  margin-bottom: 52px;
-  text-align: center;
-  color: #88c9bf;
-`;
-
 export default function PetRegisterSucess() {
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Courgette_400Regular,
-  });
-
   function onSubmit(data: Animal) {
     Api.Database.createPet(data);
-  }
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
   }
 
   return (
