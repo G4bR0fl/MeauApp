@@ -1,16 +1,21 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Provider as PaperProvider } from 'react-native-paper';
-import styled from 'styled-components/native';
+import styled, { ThemeProvider } from 'styled-components/native';
 import DogCard from '../components/DogCard';
-import { theme } from '../components/theme';
-import PetAdopt from './petAdopt';
+import { invertedTheme } from '../components/theme';
+import { Api } from '../firebase/api';
 
 const Stack = createStackNavigator();
 
 export default function PetAdoption({ navigation }) {
+  const [list, setList] = useState([])
+
+  useEffect(() => {
+    Api.Database.Pet.listAdoption().then(res => setList(res))
+  }, [])
+
   const ButtonBox = styled.View`
     width: 100%;
     padding: 5%;
@@ -31,21 +36,14 @@ export default function PetAdoption({ navigation }) {
     },
   });
   return (
-    <PaperProvider theme={theme}>
-      <ThemeProvider theme={theme}>
+    <PaperProvider theme={invertedTheme}>
+      <ThemeProvider theme={invertedTheme}>
         <ScrollView style={styles.container}>
           <StatusBar barStyle="light-content" backgroundColor="#f7a800" />
           <View>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(PetAdopt.name);
-              }}
-            >
-              <DogCard />
-            </TouchableOpacity>
-            <DogCard />
-            <DogCard />
-            <DogCard />
+            {
+              list?.map(item => <DogCard value={item} />)
+            }
           </View>
         </ScrollView>
       </ThemeProvider>

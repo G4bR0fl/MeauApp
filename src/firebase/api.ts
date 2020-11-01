@@ -30,6 +30,13 @@ export const Api = {
         async createPet(data: any) {
             const db = FirebaseApp.firestore().collection('pets')
             return db.add(data)
+        },
+        Pet: {
+            async listAdoption() {
+                const db = FirebaseApp.firestore().collection('pets')
+                const snapshot = await db.get()
+                return snapshot.docs.map(doc => doc.data())
+            },
         }
     }
 }
