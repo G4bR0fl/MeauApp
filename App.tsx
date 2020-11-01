@@ -16,13 +16,37 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
-import React, { useState } from 'react';
+import * as Notifications from 'expo-notifications';
+import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
 import AuthContext from './src/firebase/auth.context';
 import FirebaseApp from './src/firebase/init';
 import { Router } from './src/routes/drawer';
+import { registerForPushNotificationsAsync } from './src/setup/notifications';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
+  const [expoPushToken, setExpoPushToken] = useState('');
+
+  useEffect(() => {
+    FirebaseApp.auth().onAuthStateChanged(user => {
+      if (user != null) {
+        setAuth(user as any);
+      } else {
+        setAuth(undefined);
+      }
+    });
+
+    registerForPushNotificationsAsync(setExpoPushToken);
+  }, []);
+
   const [auth, setAuth] = useState(undefined);
 
   let [fontsLoaded] = useFonts({
@@ -39,14 +63,6 @@ export default function App() {
     Roboto_900Black,
     Roboto_900Black_Italic,
     Courgette_400Regular,
-  });
-
-  FirebaseApp.auth().onAuthStateChanged(user => {
-    if (user != null) {
-      setAuth(user as any);
-    } else {
-      setAuth(undefined);
-    }
   });
 
   if (!fontsLoaded) {
