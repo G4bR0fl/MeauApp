@@ -1,10 +1,4 @@
-import {
-  Roboto_400Regular,
-  Roboto_500Medium,
-  useFonts,
-} from '@expo-google-fonts/roboto';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppLoading } from 'expo';
 import React from 'react';
 import {
   ScrollView,
@@ -12,20 +6,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 const Stack = createStackNavigator();
 
 export default function term({ navigation }) {
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   return (
     <ScrollView>

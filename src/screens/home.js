@@ -1,20 +1,13 @@
-import { Courgette_400Regular, useFonts } from '@expo-google-fonts/courgette';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppLoading } from 'expo';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AtalhosStack from '../routes/AtalhosStack';
-import CadastroStack from '../routes/CadastroStack';
 import Login from './login';
 import PetAdoption from './petAdoption';
-import PetRegister from './petRegister';
+import PetRegister from './petRegister/petRegister';
 
 const Stack = createStackNavigator();
 export default function Home({ navigation }) {
-  let [fontsLoaded] = useFonts({
-    Courgette_400Regular,
-  });
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -76,10 +69,6 @@ export default function Home({ navigation }) {
     },
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.viewOla}>
@@ -111,7 +100,7 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(CadastroStack.name, {
+            navigation.navigate(AtalhosStack.name, {
               screen: PetRegister.name,
             });
           }}
