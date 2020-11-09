@@ -16,38 +16,40 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
-import * as Notifications from 'expo-notifications';
 import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
+import { Api } from './src/firebase/api';
 import AuthContext from './src/firebase/auth.context';
 import FirebaseApp from './src/firebase/init';
+import User from './src/firebase/models/User';
 import { Router } from './src/routes/drawer';
-import { registerForPushNotificationsAsync } from './src/setup/notifications';
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
+import {
+  getPushNotificationToken,
+  registerForPushNotifications,
+} from './src/setup/notifications';
 
 export default function App() {
   const [expoPushToken, setExpoPushToken] = useState('');
+  const [auth, setAuth] = useState<User | null>(null);
 
   useEffect(() => {
+    registerForPushNotifications();
+
     FirebaseApp.auth().onAuthStateChanged(user => {
       if (user != null) {
         setAuth(user as any);
+        getPushNotificationToken(setExpoPushToken);
       } else {
-        setAuth(undefined);
+        setAuth(null);
       }
     });
-
-    registerForPushNotificationsAsync(setExpoPushToken);
   }, []);
 
-  const [auth, setAuth] = useState(undefined);
+  useEffect(() => {
+    if (expoPushToken) {
+      Api.Database.Profile.updatePushToken(expoPushToken);
+    }
+  }, [expoPushToken]);
 
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,

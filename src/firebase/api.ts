@@ -23,6 +23,15 @@ export const Api = {
         }
     },
     Database: {
+        Profile: {
+            async updatePushToken(token: string) {
+                const currentUser = FirebaseApp.auth().currentUser
+                const db = FirebaseApp.firestore().collection('users')
+                const doc = db.doc(currentUser?.uid)
+                doc.set({ token }, { merge: true })
+                return FirebaseApp.auth().currentUser
+            },
+        },
         async getPetToAdoption() {
             const db = FirebaseApp.firestore().collection('pets')
             return db.get()

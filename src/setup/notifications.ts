@@ -3,11 +3,7 @@ import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import { Platform } from 'react-native';
 
-interface AppRoot {
-
-}
-
-export async function registerForPushNotificationsAsync(setToken: Function) {
+async function checkNotificationGranted(): Promise<Permissions.PermissionStatus> {
     if (Constants.isDevice) {
         const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
         let finalStatus = existingStatus;
@@ -17,15 +13,16 @@ export async function registerForPushNotificationsAsync(setToken: Function) {
         }
         if (finalStatus !== 'granted') {
             alert('Failed to get push token for push notification!');
-            return;
         }
-        const token = (await Notifications.getExpoPushTokenAsync()).data;
-        console.log(token);
-        setToken(token)
+        return finalStatus;
     } else {
         alert('Must use physical device for Push Notifications');
     }
+    return Permissions.PermissionStatus.UNDETERMINED;
+}
 
+export async function registerForPushNotifications() {
+    checkNotificationGranted()
     if (Platform.OS === 'android') {
         Notifications.setNotificationChannelAsync('default', {
             name: 'default',
@@ -33,5 +30,14 @@ export async function registerForPushNotificationsAsync(setToken: Function) {
             vibrationPattern: [0, 250, 250, 250],
             lightColor: '#FF231F7C',
         });
+    }
+};
+
+export async function getPushNotificationToken(setToken: Function) {
+    const granted = await checkNotificationGranted()
+    if (granted == Permissions.PermissionStatus.GRANTED) {
+        const token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log(token);
+        setToken(token)
     }
 };
