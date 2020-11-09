@@ -18,10 +18,10 @@ import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
+import User from './backend/models/User';
 import { Api } from './src/firebase/api';
 import AuthContext from './src/firebase/auth.context';
 import FirebaseApp from './src/firebase/init';
-import User from './src/firebase/models/User';
 import { Router } from './src/routes/drawer';
 import {
   getPushNotificationToken,
