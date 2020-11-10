@@ -4,19 +4,14 @@ import {
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import * as React from 'react';
-import { List, Text } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Api } from '../../backend/firebase/api';
 import { atalhosRoutes } from '../routes/AtalhosStack';
 import { configRoutes } from '../routes/ConfigStack';
 import { infoRoutes } from '../routes/InformationsStack';
 import { profileRoutes } from '../routes/ProfileStack';
-import { theme } from './theme';
-
-const Avatar = styled.View`
-  height: 150px;
-  background-color: ${theme.colors.primary};
-`;
+import Avatar from './Avatar';
 
 export const routes = [profileRoutes, atalhosRoutes, infoRoutes, configRoutes];
 
@@ -27,12 +22,9 @@ const LogoutButton = styled.Button`
 export function CustomDrawerContent(
   props: DrawerContentComponentProps<DrawerContentOptions>
 ) {
-  //const auth = React.useContext(AuthContext);
   return (
     <DrawerContentScrollView {...props}>
-      <Avatar>
-        <Text></Text>
-      </Avatar>
+      <Avatar />
       {routes.map(item => (
         <List.Accordion
           title={item.label}
