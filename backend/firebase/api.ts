@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import { Session } from '../../src/firebase/auth.context';
 //import Pessoa from '../firebase/models/Pessoa';
 import User from '../models/User';
 import FirebaseApp from './init';
@@ -32,7 +33,7 @@ export const Api = {
 
       }
     },
-    async currentUser(): Promise<{ profile: User, ref: firebase.firestore.DocumentData['ref'] } | undefined> {
+    async currentUser(): Promise<Session | undefined> {
       try {
         const user = await FirebaseApp.auth().currentUser
         const db = FirebaseApp.firestore().collection('users')
