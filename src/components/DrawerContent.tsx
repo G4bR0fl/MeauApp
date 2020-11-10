@@ -6,7 +6,7 @@ import {
 import * as React from 'react';
 import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { Api } from '../firebase/api';
+import { Api } from '../../backend/firebase/api';
 import { atalhosRoutes } from '../routes/AtalhosStack';
 import { configRoutes } from '../routes/ConfigStack';
 import { infoRoutes } from '../routes/InformationsStack';
