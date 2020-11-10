@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import User from '../models/User';
 import FirebaseApp from './init';
-
 
 export const Api = {
     Auth: {
@@ -17,6 +17,17 @@ export const Api = {
                     let errorCode = error.code;
                     let errorMessage = error.message;
                 });
+        },
+        async createUser({ email, password }: { email: string, password: string }, profile: User) {
+            try {
+                const auth = await FirebaseApp.auth().createUserWithEmailAndPassword(email, password)
+                const uid = auth.user?.uid
+                profile.uid = uid as string
+                const db = FirebaseApp.firestore().collection('users')
+                return db.add(profile)
+            } catch (error) {
+
+            }
         },
         async signOut() {
             return FirebaseApp.auth().signOut()
