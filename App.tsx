@@ -18,10 +18,10 @@ import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
+import { Api } from './backend/firebase/api';
+import FirebaseApp from './backend/firebase/init';
 import User from './backend/models/User';
-import { Api } from './src/firebase/api';
 import AuthContext from './src/firebase/auth.context';
-import FirebaseApp from './src/firebase/init';
 import { Router } from './src/routes/drawer';
 import {
   getPushNotificationToken,
@@ -35,9 +35,11 @@ export default function App() {
   useEffect(() => {
     registerForPushNotifications();
 
-    FirebaseApp.auth().onAuthStateChanged(user => {
+    FirebaseApp.auth().onAuthStateChanged(async user => {
       if (user != null) {
-        setAuth(user as any);
+        const currentUser = await Api.Auth.currentUser();
+        console.log(currentUser);
+        setAuth(currentUser as any);
         getPushNotificationToken(setExpoPushToken);
       } else {
         setAuth(null);
