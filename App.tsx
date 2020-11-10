@@ -35,9 +35,11 @@ export default function App() {
   useEffect(() => {
     registerForPushNotifications();
 
-    FirebaseApp.auth().onAuthStateChanged(user => {
+    FirebaseApp.auth().onAuthStateChanged(async user => {
       if (user != null) {
-        setAuth(user as any);
+        const currentUser = await Api.Auth.currentUser();
+        console.log(currentUser);
+        setAuth(currentUser as any);
         getPushNotificationToken(setExpoPushToken);
       } else {
         setAuth(null);
