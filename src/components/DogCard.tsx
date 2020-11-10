@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Animal from '../firebase/models/Animal';
+import BaseAnimal from '../../backend/models/Animal';
 
 const styles = StyleSheet.create({
   headerBar: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DogCard = ({ value }: { value: Animal }) => (
+const DogCard = ({ value }: { value: BaseAnimal }) => (
   <View style={styles.container}>
     <View style={styles.titleView}>
       <Text style={styles.titleText}>{value.nome}</Text>

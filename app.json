@@ -26,7 +26,8 @@
       }
     },
     "android": {
-      "package": "com.unb.meau"
+      "package": "com.unb.meau",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
