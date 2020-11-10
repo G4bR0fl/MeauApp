@@ -32,13 +32,13 @@ export const Api = {
 
       }
     },
-    async currentUser({ email, password }: { email: string, password: string }, profile: User) {
+    async currentUser(): Promise<{ profile: User, ref: firebase.firestore.DocumentData['ref'] } | undefined> {
       try {
         const user = await FirebaseApp.auth().currentUser
         const db = FirebaseApp.firestore().collection('users')
         const query = (await db.get()).query.where('uid', '==', user?.uid)
-        const result = await query.get()
-        return result
+        const result = await (await query.get()).docs[0]
+        return { profile: result.data() as User, ref: result.ref }
       } catch (error) {
         return undefined
       }
