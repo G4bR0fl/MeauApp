@@ -6,12 +6,6 @@ import FirebaseApp from './init';
 //https://medium.com/@denisceric94/expo-and-firebase-authentication-email-password-facebook-and-google-681a511c61b6
 
 export class Auth {
-    authChange = FirebaseApp.auth().onAuthStateChanged((user) => {
-        if (user != null) {
-            console.log("We are authenticated now!");
-        }
-    });
-
     async signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider()
         FirebaseApp.auth().signInWithPopup(provider)

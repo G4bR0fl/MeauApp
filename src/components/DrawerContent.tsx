@@ -10,10 +10,8 @@ import { Api } from '../../backend/firebase/api';
 import { atalhosRoutes } from '../routes/AtalhosStack';
 import { configRoutes } from '../routes/ConfigStack';
 import { infoRoutes } from '../routes/InformationsStack';
-import { profileRoutes } from '../routes/ProfileStack';
-import Avatar from './Avatar';
 
-export const routes = [profileRoutes, atalhosRoutes, infoRoutes, configRoutes];
+export const routes = [atalhosRoutes, infoRoutes, configRoutes];
 
 const LogoutButton = styled.Button`
   width: 100%;
@@ -24,7 +22,7 @@ export function CustomDrawerContent(
 ) {
   return (
     <DrawerContentScrollView {...props}>
-      <Avatar />
+      {/* <DrawerAvatar /> */}
       {routes.map(item => (
         <List.Accordion
           title={item.label}

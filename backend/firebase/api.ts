@@ -2,7 +2,7 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { Session } from '../../src/firebase/auth.context';
 //import Pessoa from '../firebase/models/Pessoa';
-import User from '../models/User';
+import Profile from '../models/User';
 import FirebaseApp from './init';
 
 
@@ -22,7 +22,7 @@ export const Api = {
           let errorMessage = error.message;
         });
     },
-    async createUser({ email, password }: { email: string, password: string }, profile: User) {
+    async createUser({ email, password }: { email: string, password: string }, profile: Profile) {
       try {
         const auth = await FirebaseApp.auth().createUserWithEmailAndPassword(email, password)
         const uid = auth.user?.uid
@@ -30,7 +30,7 @@ export const Api = {
         const db = FirebaseApp.firestore().collection('users')
         return db.add(profile)
       } catch (error) {
-
+        console.log(error)
       }
     },
     async currentUser(): Promise<Session | undefined> {
@@ -39,7 +39,7 @@ export const Api = {
         const db = FirebaseApp.firestore().collection('users')
         const query = (await db.get()).query.where('uid', '==', user?.uid)
         const result = await (await query.get()).docs[0]
-        return { profile: result.data() as User, ref: result.ref }
+        return { profile: result.data() as Profile, ref: result.ref }
       } catch (error) {
         return undefined
       }

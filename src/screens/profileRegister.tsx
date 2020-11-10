@@ -1,12 +1,3 @@
-// @ts-nocheck
-import {
-  Roboto_400Regular,
-  Roboto_500Medium,
-  useFonts,
-} from '@expo-google-fonts/roboto';
-import { createStackNavigator } from '@react-navigation/stack';
-import { AppLoading } from 'expo';
-import 'firebase/firestore';
 import React, { useState } from 'react';
 import {
   ScrollView,
@@ -18,13 +9,12 @@ import {
   View,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Api } from '../firebase/api';
-
-const Stack = createStackNavigator();
+import { Api } from '../../backend/firebase/api';
+import Profile from '../../backend/models/User';
 
 export default function profileRegister({ navigation }) {
-  const [nome, setName] = useState('');
-  const [age, setAge] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState<number>(undefined as any);
   const [email, setEmail] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
@@ -35,7 +25,7 @@ export default function profileRegister({ navigation }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const person = {
-    nome,
+    name,
     age,
     email,
     state,
@@ -44,22 +34,13 @@ export default function profileRegister({ navigation }) {
     phone,
     username,
     password,
-  };
+  } as Profile & { password: string };
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
-  function onSubmit(data) {
+  function onSubmit(data: any) {
     if (password === passwordConfirmation) {
-      Api.Database.createUser(data);
+      const { email, password, ...rest } = person;
+      Api.Auth.createUser({ email, password }, { email, ...rest });
       console.log('User criado com sucesso!');
-      Api.Database.getUsers();
     } else {
       console.log('Senhas diferentes, user não foi criado');
     }
@@ -70,8 +51,6 @@ export default function profileRegister({ navigation }) {
       <StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
 
       <View style={styles.container}>
-        <View style={styles.header}></View>
-
         <View style={styles.infoBox}>
           <Text style={{ fontFamily: 'Roboto_400Regular' }}>
             As informações preenchidas serão divulgadas apenas para a pessoa com
@@ -87,7 +66,7 @@ export default function profileRegister({ navigation }) {
             style={styles.input}
             placeholder="Nome Completo"
             onChangeText={text => setName(text)}
-            value={nome}
+            value={name}
           />
           <TextInput
             keyboardType="numeric"
@@ -136,14 +115,11 @@ export default function profileRegister({ navigation }) {
           <TextInput
             keyboardType="default"
             style={styles.input}
-            Confirmation
-            Confirmation
             placeholder="Nome de usuário"
             onChangeText={text => setUsername(text)}
             value={username}
           />
           <TextInput
-            style={styles.inputFont}
             secureTextEntry={true}
             keyboardType="default"
             style={styles.input}
