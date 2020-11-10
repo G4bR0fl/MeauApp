@@ -32,6 +32,17 @@ export const Api = {
 
       }
     },
+    async currentUser({ email, password }: { email: string, password: string }, profile: User) {
+      try {
+        const user = await FirebaseApp.auth().currentUser
+        const db = FirebaseApp.firestore().collection('users')
+        const query = (await db.get()).query.where('uid', '==', user?.uid)
+        const result = await query.get()
+        return result
+      } catch (error) {
+        return undefined
+      }
+    },
     async signOut() {
       return FirebaseApp.auth().signOut()
     }
@@ -43,24 +54,24 @@ export const Api = {
         const snapshot = await db.get()
         return snapshot.docs.map(doc => doc.data())
       },
-      Profile: {
-        async updatePushToken(token: string) {
-          const currentUser = FirebaseApp.auth().currentUser
-          const db = FirebaseApp.firestore().collection('users')
-          const doc = db.doc(currentUser?.uid)
-          doc.set({ token }, { merge: true })
-          return FirebaseApp.auth().currentUser
-        },
+    },
+    Profile: {
+      async updatePushToken(token: string) {
+        const currentUser = FirebaseApp.auth().currentUser
+        const db = FirebaseApp.firestore().collection('users')
+        const doc = db.doc(currentUser?.uid)
+        doc.set({ token }, { merge: true })
+        return FirebaseApp.auth().currentUser
       },
-      async getPetToAdoption() {
-        const db = FirebaseApp.firestore().collection('pets')
-        return db.get()
-      },
-      async createPet(data: any) {
-        const db = FirebaseApp.firestore().collection('pets')
-        return db.add(data)
-      },
-    }
+    },
+    async getPetToAdoption() {
+      const db = FirebaseApp.firestore().collection('pets')
+      return db.get()
+    },
+    async createPet(data: any) {
+      const db = FirebaseApp.firestore().collection('pets')
+      return db.add(data)
+    },
   }
 }
 

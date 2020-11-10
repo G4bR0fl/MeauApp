@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import styled, { ThemeProvider } from 'styled-components/native';
+import { Api } from '../../backend/firebase/api';
 import DogCard from '../components/DogCard';
 import { invertedTheme } from '../components/theme';
-import { Api } from '../firebase/api';
 
 const Stack = createStackNavigator();
 
