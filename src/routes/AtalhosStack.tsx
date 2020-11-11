@@ -4,6 +4,7 @@ import PetAdoption from '../screens/petAdoption';
 import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
+import profileRegister from '../screens/profileRegister';
 import { greenHeader } from './stack-util';
 
 const Stack = createStackNavigator();
@@ -36,6 +37,12 @@ export const atalhosRoutes = {
       title: 'Apadinhar',
       name: PetPatronize.name,
       component: PetPatronize,
+    },
+    {
+      label: 'Cadastrar perfil',
+      title: 'Perfil',
+      name: profileRegister.name,
+      component: profileRegister,
     },
   ],
 };

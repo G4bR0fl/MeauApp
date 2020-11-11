@@ -1,8 +1,8 @@
 import React from 'react';
-import User from '../../backend/models/User';
+import Profile from '../../backend/models/User';
 
 export type Session = {
-  profile: User;
+  profile: Profile;
   ref: firebase.firestore.DocumentData['ref'];
 };
 

@@ -1,5 +1,5 @@
 import { DocumentReference } from "@google-cloud/firestore";
-import User from "./User";
+import Profile from "./User";
 
 export default interface BaseAnimal {
     nome: string;
@@ -9,5 +9,5 @@ export default interface BaseAnimal {
 }
 
 export interface Animal extends BaseAnimal {
-    owner: DocumentReference<User>
+    owner: DocumentReference<Profile>
 }

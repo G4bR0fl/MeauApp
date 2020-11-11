@@ -37,7 +37,6 @@ export async function getPushNotificationToken(setToken: Function) {
     const granted = await checkNotificationGranted()
     if (granted == Permissions.PermissionStatus.GRANTED) {
         const token = (await Notifications.getExpoPushTokenAsync()).data;
-        console.log(token);
         setToken(token)
     }
 };
