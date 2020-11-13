@@ -57,12 +57,13 @@ const images = [
   require('../../assets/dog.jpg'),
 ];
 function PetAdopt({ route, navigation }) {
+  const doc = route.params.detail;
   const detail: BaseAnimal = route.params.detail.data();
   navigation.setOptions({ title: detail.nome });
 
   function pretetionToAdoption() {
-    console.log(detail);
-    Api.Database.Pet.pretetionToAdoption(detail);
+    console.log(doc);
+    Api.Database.Pet.pretetionToAdoption(doc);
   }
 
   return (

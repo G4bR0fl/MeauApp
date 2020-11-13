@@ -7,6 +7,6 @@ export default interface Profile {
     city: string;
     address: string;
     username: string;
-    push_token?: string;
+    deviceToken?: string;
     uid?: string;
 }

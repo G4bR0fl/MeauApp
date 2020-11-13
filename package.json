@@ -3,6 +3,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "build:android": "expo build:android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
@@ -36,7 +37,8 @@
     "react-native-screens": "~2.10.1",
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.7",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "expo-constants": "~9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

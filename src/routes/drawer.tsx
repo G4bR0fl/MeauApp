@@ -1,8 +1,8 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import AuthContext from '../components/auth/auth.context';
 import { CustomDrawerContent } from '../components/DrawerContent';
-import AuthContext from '../firebase/auth.context';
 import Login from '../screens/login';
 import AtalhosStack from './AtalhosStack';
 import ConfigStack from './ConfigStack';
