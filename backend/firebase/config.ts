@@ -12,5 +12,5 @@ export const config = {
 
 export const notification = {
     serverKey: "AAAAmeStuZ8:APA91bEyk80IJ1iAb_kmi59V1QaBhhlPvn_snfjQWnIo7AWkKHJiJvruR5H1mLzGpqHQLsqpFPHuobCjG7hwzVsaBw_Orub1Zq29qjbflLYlDWw2qs7mCxS7nzdc3HdIWaYl8QfKUVc5",
-    experienceId: `santosdanilo/meau`
+    experienceId: `@santosdanilo/meau`
 }

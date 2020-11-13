@@ -73,13 +73,14 @@ const Database = {
           title: "\uD83D\uDCE7 You've got mail",
           body: 'Hello world! \uD83C\uDF10'
         }
+        const headers = {
+          Accept: 'application/json',
+          'Accept-encoding': 'gzip, deflate',
+          'Content-Type': 'application/json'
+        }
         const response = await fetch('https://exp.host/--/api/v2/push/send', {
           method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Accept-encoding': 'gzip, deflate',
-            'Content-Type': 'application/json'
-          },
+          headers: headers,
           body: JSON.stringify(message),
         })
         console.log('success')
