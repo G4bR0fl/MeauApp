@@ -1,11 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
+import PetAdopt from '../screens/petAdopt';
 import PetAdoption from '../screens/petAdoption';
 import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
 import profileRegister from '../screens/profileRegister';
-import { greenHeader } from './stack-util';
+import { greenHeader, yellowHeader } from './stack-util';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,15 @@ export const atalhosRoutes = {
   ],
 };
 
+const hiddentRoutes = [
+  {
+    title: undefined,
+    name: PetAdopt.name,
+    component: PetAdopt,
+    header: yellowHeader,
+  },
+];
+
 export default function AtalhosStack({ navigation }) {
   return (
     <Stack.Navigator initialRouteName={PetAdoption.name}>
@@ -56,6 +66,14 @@ export default function AtalhosStack({ navigation }) {
           name={route.name}
           component={route.component}
           options={greenHeader(route.title)}
+        />
+      ))}
+      {hiddentRoutes.map(route => (
+        <Stack.Screen
+          key={route.name}
+          name={route.name}
+          component={route.component}
+          options={route.header(route.title)}
         />
       ))}
     </Stack.Navigator>

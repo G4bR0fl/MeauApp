@@ -6,6 +6,7 @@ export default interface BaseAnimal {
     especie: 'cachorro' | 'gato';
     sexo: 'M' | 'F';
     porte: 'pequeno' | 'medio ' | 'grande';
+    idade: number;
 }
 
 export interface Animal extends BaseAnimal {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BaseAnimal from '../../backend/models/Animal';
 
@@ -49,8 +49,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const DogCard = ({ value }: { value: BaseAnimal }) => (
-  <View style={styles.container}>
+const DogCard = ({
+  value,
+  onPress,
+}: {
+  value: BaseAnimal;
+  onPress?: Function | any;
+}) => (
+  <TouchableOpacity style={styles.container} onPress={onPress}>
     <View style={styles.titleView}>
       <Text style={styles.titleText}>{value.nome}</Text>
       <Icon name="heart" />
@@ -67,7 +73,7 @@ const DogCard = ({ value }: { value: BaseAnimal }) => (
     <View style={styles.infoView}>
       <Text>SAMAMBAIA SUL - DISTRITO FEDERAL</Text>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 export default DogCard;

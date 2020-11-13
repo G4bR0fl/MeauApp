@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from 'styled-components/native';
 import { Api } from '../../backend/firebase/api';
 import DogCard from '../components/DogCard';
 import { invertedTheme } from '../components/theme';
+import PetAdopt from './petAdopt';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,7 @@ export default function PetAdoption({ navigation }) {
   const [list, setList] = useState([])
 
   useEffect(() => {
-    Api.Database.Pet.listAdoption().then(res => setList(res))
+    Api.Database.Pet.listAdoption().then(res => setList(res.map(doc => [doc.data(), doc])))
   }, [])
 
   const ButtonBox = styled.View`
@@ -35,6 +36,10 @@ export default function PetAdoption({ navigation }) {
       backgroundColor: '#fafafa',
     },
   });
+
+  function petDetail(detail) {
+    navigation.navigate(PetAdopt.name, { detail })
+  }
   return (
     <PaperProvider theme={invertedTheme}>
       <ThemeProvider theme={invertedTheme}>
@@ -42,7 +47,7 @@ export default function PetAdoption({ navigation }) {
           <StatusBar barStyle="light-content" backgroundColor="#f7a800" />
           <View>
             {
-              list?.map(item => <DogCard value={item} />)
+              list?.map(([item, doc]) => <DogCard value={item} onPress={petDetail(doc)} />)
             }
           </View>
         </ScrollView>

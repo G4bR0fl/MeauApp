@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { Session } from '../../src/firebase/auth.context';
-//import Pessoa from '../firebase/models/Pessoa';
+import { Animal } from '../models/Animal';
 import Profile from '../models/User';
 import FirebaseApp from './init';
 
@@ -51,8 +51,12 @@ const Database = {
     async listAdoption() {
       const db = FirebaseApp.firestore().collection('pets')
       const snapshot = await db.get()
-      return snapshot.docs.map(doc => doc.data())
+      return snapshot.docs
     },
+    async pretetionToAdoption(animal: Animal) {
+      const currentUser = Auth.currentUser()
+      const owner = animal.owner
+    }
   },
   Profile: {
     async updatePushToken(token: string) {
