@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
-import AuthContext from '../firebase/auth.context';
+import AuthContext from './auth/auth.context';
 import { theme } from './theme';
 
 const Box = styled.View`

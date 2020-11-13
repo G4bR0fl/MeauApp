@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { Api } from '../../backend/firebase/api';
-import AuthContext from '../firebase/auth.context';
+import AuthContext from '../components/auth/auth.context';
 import AtalhosStack from '../routes/AtalhosStack';
 import Login from './login';
 import PetAdoption from './petAdoption';

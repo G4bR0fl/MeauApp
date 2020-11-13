@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { Session } from '../../src/firebase/auth.context';
+import { Session } from '../../src/components/auth/auth.context';
 //import Pessoa from '../firebase/models/Pessoa';
 import Profile from '../models/User';
 import FirebaseApp from './init';

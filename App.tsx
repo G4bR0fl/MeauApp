@@ -21,7 +21,7 @@ import 'react-native-gesture-handler';
 import { Api } from './backend/firebase/api';
 import FirebaseApp from './backend/firebase/init';
 import AuthContext, { Session } from './src/firebase/auth.context';
-import { Router } from './src/routes/drawer';
+import { Router } from './src/routes/d./src/auth/auth.context
 import {
   getPushNotificationToken,
   registerForPushNotifications,
