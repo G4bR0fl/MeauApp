@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { View, Text } from "react-native";
-import { Checkbox } from "react-native-paper";
+import React, { useState } from 'react';
+import { Text } from 'react-native';
+import { Checkbox } from 'react-native-paper';
+import { Container, RadioTemplate } from '../components/RadioButtonGroup';
 
 interface Item {
   label: string;
   prop: string;
 }
 
-export default function CheckboxGroup({ elements }: { elements: Item[] }) {
+export default function CheckboxGroup({
+  elements,
+  value,
+  onChange,
+}: {
+  elements: Item[];
+  value?: any;
+  onChange?: (value: string) => void;
+}) {
   const [state, setState] = useState<any>({});
 
   function markProp(prop: string) {
@@ -16,19 +25,20 @@ export default function CheckboxGroup({ elements }: { elements: Item[] }) {
       ...state,
       [prop]: !value,
     });
+    onChange && onChange(state);
   }
+
   return (
-    <View>
-      {elements.map((chk, index) => {
-        <View key={index}>
-          <Text>{chk.label}</Text>
+    <Container>
+      {elements.map((chk, index) => (
+        <RadioTemplate key={index}>
           <Checkbox
-            status={state[chk.prop] ? "checked" : "unchecked"}
+            status={state[chk.prop] ? 'checked' : 'unchecked'}
             onPress={() => markProp(chk.prop)}
           />
-        </View>;
-      })}
-      <Text>haha </Text>
-    </View>
+          <Text>{chk.label}</Text>
+        </RadioTemplate>
+      ))}
+    </Container>
   );
 }
