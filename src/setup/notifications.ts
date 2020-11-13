@@ -22,7 +22,8 @@ async function checkNotificationGranted(): Promise<Permissions.PermissionStatus>
 }
 
 export async function registerForPushNotifications() {
-    checkNotificationGranted()
+    const status = await checkNotificationGranted()
+    console.log(status)
     if (Platform.OS === 'android') {
         Notifications.setNotificationChannelAsync('default', {
             name: 'default',
@@ -38,5 +39,6 @@ export async function getPushNotificationToken(setToken: Function) {
     if (granted == Permissions.PermissionStatus.GRANTED) {
         const token = (await Notifications.getExpoPushTokenAsync()).data;
         setToken(token)
+        console.log(token)
     }
 };

@@ -32,6 +32,7 @@ export default function App() {
   const [auth, setAuth] = useState<Session | undefined>(undefined);
 
   useEffect(() => {
+    //setup
     registerForPushNotifications();
 
     FirebaseApp.auth().onAuthStateChanged(async user => {
@@ -46,6 +47,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    console.log(expoPushToken);
     if (expoPushToken) {
       Api.Database.Profile.updatePushToken(expoPushToken);
     }

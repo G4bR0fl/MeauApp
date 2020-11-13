@@ -27,7 +27,12 @@
     },
     "android": {
       "package": "com.unb.meau",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "useNextNotificationsApi": true,
+      "permissions": [
+        "NOTIFICATIONS",
+        "USER_FACING_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

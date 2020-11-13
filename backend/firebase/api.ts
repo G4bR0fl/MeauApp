@@ -57,9 +57,38 @@ const Database = {
   Profile: {
     async updatePushToken(token: string) {
       const { profile, ref } = await Auth.currentUser() as Session
-      ref.set({ token }, { merge: true })
+      ref.set({ deviceToken: token }, { merge: true })
       return ref
     },
+    async sendNotification({
+      token,
+      data: {
+        title,
+        message
+      }
+    }: any) {
+      try {
+        const message = {
+          to: token,
+          title: "\uD83D\uDCE7 You've got mail",
+          body: 'Hello world! \uD83C\uDF10'
+        }
+        const response = await fetch('https://exp.host/--/api/v2/push/send', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Accept-encoding': 'gzip, deflate',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(message),
+        })
+        console.log('success')
+        console.log(response)
+      } catch (error) {
+        console.log('fail')
+        console.log(error)
+      }
+    }
   },
   async getPetToAdoption() {
     const db = FirebaseApp.firestore().collection('pets')

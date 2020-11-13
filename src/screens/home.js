@@ -1,14 +1,23 @@
-
-import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-paper';
+import { Api } from '../../backend/firebase/api';
+import AuthContext from '../firebase/auth.context';
 import AtalhosStack from '../routes/AtalhosStack';
 import Login from './login';
 import PetAdoption from './petAdoption';
 import PetRegister from './petRegister/petRegister';
 
-const Stack = createStackNavigator();
 export default function Home({ navigation }) {
+  const auth = React.useContext(AuthContext)
+  function send() {
+    const token = auth.profile.deviceToken
+    console.log(token)
+    const data = {
+    }
+    Api.Database.Profile.sendNotification({ token, data })
+  }
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -82,6 +91,9 @@ export default function Home({ navigation }) {
         </Text>
         <Text style={styles.textWelcome}>Qual o seu interesse?</Text>
       </View>
+      <Button onPress={send}>
+        Notification
+      </Button>
       <View style={styles.clickButtons}>
         <TouchableOpacity
           onPress={() => {
