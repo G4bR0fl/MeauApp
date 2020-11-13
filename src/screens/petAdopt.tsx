@@ -62,7 +62,6 @@ function PetAdopt({ route, navigation }) {
   navigation.setOptions({ title: detail.nome });
 
   function pretetionToAdoption() {
-    console.log(doc);
     Api.Database.Pet.pretetionToAdoption(doc);
   }
 

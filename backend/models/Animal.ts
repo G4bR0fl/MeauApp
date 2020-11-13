@@ -1,5 +1,5 @@
 import { DocumentReference } from "@google-cloud/firestore";
-import Profile from "./User";
+import { Profile } from "./User";
 
 export default interface BaseAnimal {
     nome: string;

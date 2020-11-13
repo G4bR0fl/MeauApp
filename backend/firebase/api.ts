@@ -1,9 +1,8 @@
+import { Animal } from '@backend/models/Animal';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { Session } from '../../src/components/auth/auth.context';
-import { Animal } from '../models/Animal';
-//import Pessoa from '../firebase/models/Pessoa';
-import Profile from '../models/User';
+import { Profile } from '../models/User';
 import FirebaseApp from './init';
 
 const Auth = {
@@ -54,9 +53,17 @@ const Database = {
       const snapshot = await db.get()
       return snapshot.docs
     },
-    async pretetionToAdoption(animal: Animal) {
+    async pretetionToAdoption(animal: Animal | any) {
       const currentUser = Auth.currentUser()
-      const owner = animal.owner
+      const data: Animal = animal.data()
+      const owner: Profile = data.owner
+      Database.Profile.sendNotification({
+        token: owner.deviceToken,
+        data: {
+          title: 'Quero adotar',
+          body: 'O nome do pet é ' + data.nome
+        }
+      })
     }
   },
   Profile: {
@@ -67,16 +74,16 @@ const Database = {
     },
     async sendNotification({
       token,
-      data: {
-        title,
-        message
+      data = {
+        title: "\uD83D\uDCE7 You've got mail",
+        body: 'Hello world! \uD83C\uDF10'
       }
     }: any) {
       try {
         const message = {
           to: token,
-          title: "\uD83D\uDCE7 You've got mail",
-          body: 'Hello world! \uD83C\uDF10'
+          title: data.title,
+          body: data.body
         }
         const headers = {
           Accept: 'application/json',

@@ -38,6 +38,7 @@ export default function PetAdoption({ navigation }) {
   });
 
   function petDetail(detail) {
+    console.log('press')
     navigation.navigate(PetAdopt.name, { detail })
   }
   return (
