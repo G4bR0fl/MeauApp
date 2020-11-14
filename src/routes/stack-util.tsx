@@ -24,6 +24,15 @@ const greenHeader = (title: string | undefined) => ({
   },
 });
 
+const drawerTheme = (route: any, navigation: any) => ({
+  title: route.title,
+  headerTintColor: '#434343',
+  headerStyle: {
+    backgroundColor: theme.colors.primary,
+    headerLeft: headerLeft(navigation),
+  },
+});
+
 const yellowHeader = (title: string | undefined) => ({
   title,
   headerTintColor: '#434343',

@@ -23,8 +23,16 @@ export function Router() {
       initialRouteName={ProfileStack.name}
       drawerContent={CustomDrawerContent}
     >
-      <Drawer.Screen name={ProfileStack.name} component={ProfileStack} />
-      <Drawer.Screen name={AtalhosStack.name} component={AtalhosStack} />
+      <Drawer.Screen
+        name={ProfileStack.name}
+        component={ProfileStack}
+        options={loginOptions}
+      />
+      <Drawer.Screen
+        name={AtalhosStack.name}
+        component={AtalhosStack}
+        options={loginOptions}
+      />
       <Drawer.Screen
         name={InformationsStack.name}
         component={InformationsStack}

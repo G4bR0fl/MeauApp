@@ -1,12 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
-import styled, { ThemeProvider } from 'styled-components/native';
+import styled from 'styled-components/native';
 import { Api } from '../../backend/firebase/api';
 import DogCard from '../components/DogCard';
-import { invertedTheme } from '../components/theme';
 import PetAdopt from './petAdopt';
+
 
 const Stack = createStackNavigator();
 
@@ -41,17 +40,13 @@ export default function PetAdoption({ navigation }) {
     navigation.navigate(PetAdopt.name, { detail })
   }
   return (
-    <PaperProvider theme={invertedTheme}>
-      <ThemeProvider theme={invertedTheme}>
-        <ScrollView style={styles.container}>
-          <StatusBar barStyle="light-content" backgroundColor="#f7a800" />
-          <View>
-            {
-              list?.map(([item, doc]) => <DogCard value={item} onPress={() => petDetail(doc)} />)
-            }
-          </View>
-        </ScrollView>
-      </ThemeProvider>
-    </PaperProvider>
+    <ScrollView style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#f7a800" />
+      <View>
+        {
+          list?.map(([item, doc]) => <DogCard value={item} onPress={() => petDetail(doc)} />)
+        }
+      </View>
+    </ScrollView>
   );
 }
