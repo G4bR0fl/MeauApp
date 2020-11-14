@@ -1,8 +1,9 @@
+import { Animal, CrossUserAnimal } from '@backend/models/Animal';
+import { DocumentSnapshot } from '@google-cloud/firestore';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { Session } from '../../src/firebase/auth.context';
-//import Pessoa from '../firebase/models/Pessoa';
-import Profile from '../models/User';
+import { Session } from '../../src/components/auth/auth.context';
+import { Profile } from '../models/User';
 import FirebaseApp from './init';
 
 const Auth = {
@@ -51,15 +52,58 @@ const Database = {
     async listAdoption() {
       const db = FirebaseApp.firestore().collection('pets')
       const snapshot = await db.get()
-      return snapshot.docs.map(doc => doc.data())
+      return snapshot.docs.map(item => item)
     },
+    async pretetionToAdoption(animal: DocumentSnapshot) {
+      const currentUser = await Auth.currentUser()
+      const data: Animal = animal.data() as Animal
+      animal.ref.collection('interest').add({ user: currentUser?.ref } as CrossUserAnimal)
+      const owner = (await data.owner.get()).data() as Profile
+      Database.Profile.sendNotification({
+        token: owner.deviceToken,
+        data: {
+          title: `${data.nome} pode ter um novo dono`,
+          body: `${currentUser?.profile.name} quer adotá-lo`
+        }
+      })
+    }
   },
   Profile: {
     async updatePushToken(token: string) {
       const { profile, ref } = await Auth.currentUser() as Session
-      ref.set({ token }, { merge: true })
+      ref.set({ deviceToken: token }, { merge: true })
       return ref
     },
+    async sendNotification({
+      token,
+      data = {
+        title: "\uD83D\uDCE7 You've got mail",
+        body: 'Hello world! \uD83C\uDF10'
+      }
+    }: any) {
+      try {
+        const message = {
+          to: token,
+          title: data.title,
+          body: data.body
+        }
+        const headers = {
+          Accept: 'application/json',
+          'Accept-encoding': 'gzip, deflate',
+          'Content-Type': 'application/json'
+        }
+        const response = await fetch('https://exp.host/--/api/v2/push/send', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(message),
+        })
+        console.log('success')
+        console.log(response)
+      } catch (error) {
+        console.log('fail')
+        console.log(error)
+      }
+    }
   },
   async getPetToAdoption() {
     const db = FirebaseApp.firestore().collection('pets')

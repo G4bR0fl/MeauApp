@@ -3,6 +3,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "build:android": "expo build:android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
@@ -11,11 +12,13 @@
     "@expo-google-fonts/courgette": "^0.1.0",
     "@expo-google-fonts/roboto": "^0.1.0",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@google-cloud/firestore": "^4.7.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/drawer": "^5.11.2",
     "@react-navigation/native": "^5.8.9",
     "@react-navigation/stack": "^5.12.6",
     "expo": "^39.0.0",
+    "expo-constants": "~9.2.0",
     "expo-facebook": "~9.0.0",
     "expo-font": "~8.3.0",
     "expo-google-sign-in": "~8.3.0",

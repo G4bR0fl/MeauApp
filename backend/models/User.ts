@@ -1,4 +1,4 @@
-export default interface Profile {
+export interface Profile {
     name: string;
     age: number;
     email: string;
@@ -7,6 +7,6 @@ export default interface Profile {
     city: string;
     address: string;
     username: string;
-    push_token?: string;
+    deviceToken?: string;
     uid?: string;
 }

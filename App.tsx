@@ -20,7 +20,7 @@ import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
 import { Api } from './backend/firebase/api';
 import FirebaseApp from './backend/firebase/init';
-import AuthContext, { Session } from './src/firebase/auth.context';
+import AuthContext, { Session } from './src/components/auth/auth.context';
 import { Router } from './src/routes/drawer';
 import {
   getPushNotificationToken,
@@ -32,6 +32,7 @@ export default function App() {
   const [auth, setAuth] = useState<Session | undefined>(undefined);
 
   useEffect(() => {
+    //setup
     registerForPushNotifications();
     Notifications.addListener(listener => {
       console.log(listener);
@@ -48,6 +49,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    console.log(expoPushToken);
     if (expoPushToken) {
       Api.Database.Profile.updatePushToken(expoPushToken);
     }

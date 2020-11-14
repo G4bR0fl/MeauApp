@@ -1,5 +1,5 @@
+import { Profile } from '@backend/models/User';
 import React from 'react';
-import Profile from '../../backend/models/User';
 
 export type Session = {
   profile: Profile;
