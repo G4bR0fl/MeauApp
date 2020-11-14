@@ -48,7 +48,7 @@ export default function PetAdoption({ navigation }) {
           <StatusBar barStyle="light-content" backgroundColor="#f7a800" />
           <View>
             {
-              list?.map(([item, doc]) => <DogCard value={item} onPress={petDetail(doc)} />)
+              list?.map(([item, doc]) => <DogCard value={item} onPress={() => petDetail(doc)} />)
             }
           </View>
         </ScrollView>
