@@ -1,4 +1,4 @@
-import { DocumentReference } from "@google-cloud/firestore";
+import { CollectionReference, DocumentReference } from "@google-cloud/firestore";
 import { Profile } from "./User";
 
 export default interface BaseAnimal {
@@ -9,6 +9,12 @@ export default interface BaseAnimal {
     idade: number;
 }
 
+
+export interface CrossUserAnimal {
+    user: DocumentReference<Profile>;
+}
+
 export interface Animal extends BaseAnimal {
     owner: DocumentReference<Profile>
+    toAdoption?: CollectionReference<any> | undefined
 }

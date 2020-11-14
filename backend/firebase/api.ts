@@ -1,4 +1,5 @@
-import { Animal } from '@backend/models/Animal';
+import { Animal, CrossUserAnimal } from '@backend/models/Animal';
+import { DocumentSnapshot } from '@google-cloud/firestore';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { Session } from '../../src/components/auth/auth.context';
@@ -51,17 +52,18 @@ const Database = {
     async listAdoption() {
       const db = FirebaseApp.firestore().collection('pets')
       const snapshot = await db.get()
-      return snapshot.docs
+      return snapshot.docs.map(item => item)
     },
-    async pretetionToAdoption(animal: Animal | any) {
-      const currentUser = Auth.currentUser()
-      const data: Animal = animal.data()
-      const owner: Profile = data.owner
+    async pretetionToAdoption(animal: DocumentSnapshot) {
+      const currentUser = await Auth.currentUser()
+      const data: Animal = animal.data() as Animal
+      animal.ref.collection('interest').add({ user: currentUser?.ref } as CrossUserAnimal)
+      const owner = (await data.owner.get()).data() as Profile
       Database.Profile.sendNotification({
         token: owner.deviceToken,
         data: {
-          title: 'Quero adotar',
-          body: 'O nome do pet é ' + data.nome
+          title: `${data.nome} pode ter um novo dono`,
+          body: `${currentUser?.profile.name} quer adotá-lo`
         }
       })
     }

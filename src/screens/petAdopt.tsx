@@ -1,10 +1,11 @@
+import { DocumentSnapshot } from '@google-cloud/firestore';
 import * as React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
 import { Button, Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components';
 import { Api } from '../../backend/firebase/api';
-import BaseAnimal from '../../backend/models/Animal';
+import { Animal } from '../../backend/models/Animal';
 import { InputLabel } from '../components/InputLabel';
 import { invertedTheme } from '../components/theme';
 
@@ -57,8 +58,8 @@ const images = [
   require('../../assets/dog.jpg'),
 ];
 function PetAdopt({ route, navigation }) {
-  const doc = route.params.detail;
-  const detail: BaseAnimal = route.params.detail.data();
+  const doc = route.params.detail as DocumentSnapshot<Animal>;
+  const detail: Animal = doc.data() as Animal;
   navigation.setOptions({ title: detail.nome });
 
   function pretetionToAdoption() {
