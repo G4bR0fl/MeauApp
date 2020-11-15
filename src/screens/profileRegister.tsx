@@ -1,3 +1,4 @@
+import { PhotoInput } from '@mobile/components/PhotoInput';
 import React, { useState } from 'react';
 import {
   ScrollView,
@@ -8,9 +9,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { Api } from '../../backend/firebase/api';
-import Profile from '../../backend/models/User';
+import { Profile } from '../../backend/models/User';
+import { InputLabel } from '../components/InputLabel';
 
 export default function profileRegister({ navigation }) {
   const [name, setName] = useState('');
@@ -135,11 +136,8 @@ export default function profileRegister({ navigation }) {
             onChangeText={text => setPasswordConfirmation(text)}
             value={passwordConfirmation}
           />
-          <Text style={styles.personalInfoText}>FOTO DE PERFIL</Text>
-          <View style={styles.pictureStyle}>
-            <Icon name="control-point" style={styles.pictureText} />
-            <Text style={styles.pictureText}>adicionar foto</Text>
-          </View>
+          <InputLabel>Foto de Perfil</InputLabel>
+          <PhotoInput />
           <TouchableOpacity onPress={() => onSubmit(person)}>
             <View style={styles.registerButton}>
               <Text>FAZER CADASTRO</Text>
