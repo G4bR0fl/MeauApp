@@ -1,4 +1,3 @@
-import { PhotoInput } from '@mobile/components/PhotoInput';
 import React, { useState } from 'react';
 import {
   ScrollView,
@@ -12,6 +11,7 @@ import {
 import { Api } from '../../backend/firebase/api';
 import { Profile } from '../../backend/models/User';
 import { InputLabel } from '../components/InputLabel';
+import { PhotoInput } from '../components/PhotoInput';
 
 export default function profileRegister({ navigation }) {
   const [name, setName] = useState('');

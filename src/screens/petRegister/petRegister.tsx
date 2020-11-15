@@ -11,7 +11,7 @@ export default function PetRegister() {
 
   async function onSubmit(data: BaseAnimal) {
     try {
-      Api.Database.createPet(data);
+      Api.Database.Pet.createPet(data);
       setFormCompletion(true);
       console;
     } catch {}

@@ -1,10 +1,25 @@
 import * as ImagePicker from 'expo-image-picker';
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import React, { useEffect, useState } from 'react';
-import { Platform, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 
-export function PhotoInput() {
-  const [image, setImage] = useState<any>(null);
+export function PhotoInput({
+  value = null,
+  onChange,
+}: {
+  value?: any;
+  onChange?: (value: ImageInfo['uri']) => void;
+}) {
+  const [image, setImage] = useState<any>(value);
+
+  useEffect(() => onChange?.(image), [image]);
 
   useEffect(() => {
     (async () => {
@@ -21,7 +36,7 @@ export function PhotoInput() {
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
@@ -35,12 +50,16 @@ export function PhotoInput() {
   };
 
   return (
-    <>
-      <TouchableOpacity style={styles.pictureStyle} onPress={pickImage}>
-        <Icon name="control-point" style={styles.pictureText} />
-        <Text style={styles.pictureText}>adicionar foto</Text>
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity style={styles.pictureStyle} onPress={pickImage}>
+      {!image ? (
+        <>
+          <Icon name="control-point" style={styles.pictureText} />
+          <Text style={styles.pictureText}>adicionar foto</Text>
+        </>
+      ) : (
+        <Image source={{ uri: image }} style={{ width: 128, height: 128 }} />
+      )}
+    </TouchableOpacity>
   );
 }
 

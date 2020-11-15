@@ -54,6 +54,16 @@ const Database = {
       const snapshot = await db.get()
       return snapshot.docs.map(item => item)
     },
+    async createPet(data: Animal) {
+      const currentUser = await Auth.currentUser()
+      const db = FirebaseApp.firestore().collection('pets')
+      const response = await fetch(data.photo);
+      const blob = await response.blob();
+      const photo = FirebaseApp.storage().ref('pets').put(blob)
+      data.owner = currentUser?.ref
+      data.photo = (await (await photo).ref.getDownloadURL()) as string
+      return db.add(data)
+    },
     async pretetionToAdoption(animal: DocumentSnapshot) {
       const currentUser = await Auth.currentUser()
       const data: Animal = animal.data() as Animal
@@ -108,10 +118,6 @@ const Database = {
   async getPetToAdoption() {
     const db = FirebaseApp.firestore().collection('pets')
     return db.get()
-  },
-  async createPet(data: any) {
-    const db = FirebaseApp.firestore().collection('pets')
-    return db.add(data)
   },
 }
 

@@ -89,8 +89,17 @@ export default function PetRegisterForm({ onSubmit }) {
           defaultValue=""
         />
       </View>
-      <InputLabel>Foto de Perfil</InputLabel>
-      <PhotoInput />
+      <View>
+        <InputLabel>Foto de Perfil</InputLabel>
+        <Controller
+          control={control}
+          render={({ onChange, onBlur, value }) => (
+            <PhotoInput onChange={onChange} value={value} />
+          )}
+          name="photo"
+          defaultValue=""
+        />
+      </View>
       <View>
         <InputLabel>Espécie</InputLabel>
         <Controller
