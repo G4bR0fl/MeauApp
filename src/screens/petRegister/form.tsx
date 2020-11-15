@@ -89,6 +89,7 @@ export default function PetRegisterForm({ onSubmit }) {
           defaultValue=""
         />
       </View>
+      <InputLabel>Foto de Perfil</InputLabel>
       <PhotoInput />
       <View>
         <InputLabel>Espécie</InputLabel>
