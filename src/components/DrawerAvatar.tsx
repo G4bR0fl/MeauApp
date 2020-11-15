@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { List } from 'react-native-paper';
 import styled from 'styled-components/native';
-import AuthContext from '../firebase/auth.context';
+import { profileRoutes } from '../routes/ProfileStack';
+import AuthContext from './auth/auth.context';
 import { theme } from './theme';
 
 const Box = styled.View`
   width: 100%;
-  height: px;
+  height: 170px;
   background-color: ${theme.colors.primary};
   padding-left: 16px;
 `;
@@ -23,28 +25,33 @@ const UserName = styled.Text`
   font-family: 'Roboto_500Medium';
 `;
 
-export default function DrawerAvatar(navigation?: any) {
+export default function DrawerAvatar({ navigation }: { navigation?: any }) {
   const auth = React.useContext(AuthContext);
   return (
-    <Box>
-      <UserImage source={require('../../assets/dog.jpg')} />
-      {/* <List.Accordion
-        title={auth?.profile.username}
+    <>
+      <Box>
+        <UserImage source={{ uri: auth?.profile.photo }} />
+      </Box>
+      <List.Accordion
+        title={auth?.profile.name}
         key={profileRoutes.label + '-root'}
+        style={{
+          backgroundColor: theme.colors.primary,
+        }}
         left={props => <List.Icon {...props} icon={profileRoutes.icon} />}
       >
         {profileRoutes.children.map(child => (
           <List.Item
             title={child.label}
             key={child.label + '-root'}
-            // onPress={() =>
-            //   navigation.navigate(profileRoutes.name, {
-            //     screen: child.name,
-            //   })
-            // }
+            onPress={() =>
+              navigation.navigate(profileRoutes.name, {
+                screen: child.name,
+              })
+            }
           />
         ))}
-      </List.Accordion> */}
-    </Box>
+      </List.Accordion>
+    </>
   );
 }

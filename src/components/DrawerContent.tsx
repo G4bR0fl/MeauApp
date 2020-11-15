@@ -10,6 +10,7 @@ import { Api } from '../../backend/firebase/api';
 import { atalhosRoutes } from '../routes/AtalhosStack';
 import { configRoutes } from '../routes/ConfigStack';
 import { infoRoutes } from '../routes/InformationsStack';
+import DrawerAvatar from './DrawerAvatar';
 
 export const routes = [atalhosRoutes, infoRoutes, configRoutes];
 
@@ -22,7 +23,7 @@ export function CustomDrawerContent(
 ) {
   return (
     <DrawerContentScrollView {...props}>
-      {/* <DrawerAvatar /> */}
+      <DrawerAvatar navigation={props.navigation} />
       {routes.map(item => (
         <List.Accordion
           title={item.label}

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import BaseAnimal from '../../backend/models/Animal';
+import { Animal } from '../../backend/models/Animal';
 
 const styles = StyleSheet.create({
   headerBar: {
@@ -49,16 +49,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const DogCard = ({ value }: { value: BaseAnimal }) => (
-  <View style={styles.container}>
+const DogCard = ({
+  value,
+  onPress,
+}: {
+  value: Animal;
+  onPress?: Function | any;
+}) => (
+  <TouchableOpacity style={styles.container} onPress={onPress}>
     <View style={styles.titleView}>
       <Text style={styles.titleText}>{value.nome}</Text>
       <Icon name="heart" />
     </View>
-    <Image
-      style={styles.animalImage}
-      source={require('../../assets/dog.jpg')}
-    />
+    <Image style={styles.animalImage} source={{ uri: value.photo }} />
     <View style={styles.infoView}>
       <Text>{value.sexo}</Text>
       <Text>ADULTO</Text>
@@ -67,7 +70,7 @@ const DogCard = ({ value }: { value: BaseAnimal }) => (
     <View style={styles.infoView}>
       <Text>SAMAMBAIA SUL - DISTRITO FEDERAL</Text>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 export default DogCard;

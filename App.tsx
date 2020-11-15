@@ -14,13 +14,13 @@ import {
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
 import { NavigationContainer } from '@react-navigation/native';
-import { AppLoading } from 'expo';
+import { AppLoading, Notifications } from 'expo';
 import { useFonts } from 'expo-font';
 import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
 import { Api } from './backend/firebase/api';
 import FirebaseApp from './backend/firebase/init';
-import AuthContext, { Session } from './src/firebase/auth.context';
+import AuthContext, { Session } from './src/components/auth/auth.context';
 import { Router } from './src/routes/drawer';
 import {
   getPushNotificationToken,
@@ -32,8 +32,11 @@ export default function App() {
   const [auth, setAuth] = useState<Session | undefined>(undefined);
 
   useEffect(() => {
+    //setup
     registerForPushNotifications();
-
+    Notifications.addListener(listener => {
+      console.log(listener);
+    });
     FirebaseApp.auth().onAuthStateChanged(async user => {
       if (user != null) {
         const currentUser = await Api.Auth.currentUser();
@@ -46,6 +49,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    console.log(expoPushToken);
     if (expoPushToken) {
       Api.Database.Profile.updatePushToken(expoPushToken);
     }
