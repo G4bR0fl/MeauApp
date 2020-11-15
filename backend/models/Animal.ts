@@ -7,7 +7,7 @@ export default interface BaseAnimal {
     sexo: 'M' | 'F';
     porte: 'pequeno' | 'medio ' | 'grande';
     idade: number;
-    photo: string;
+    photo?: string;
 }
 
 

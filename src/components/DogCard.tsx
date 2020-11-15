@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import BaseAnimal from '../../backend/models/Animal';
+import { Animal } from '../../backend/models/Animal';
 
 const styles = StyleSheet.create({
   headerBar: {
@@ -53,7 +53,7 @@ const DogCard = ({
   value,
   onPress,
 }: {
-  value: BaseAnimal;
+  value: Animal;
   onPress?: Function | any;
 }) => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -61,10 +61,7 @@ const DogCard = ({
       <Text style={styles.titleText}>{value.nome}</Text>
       <Icon name="heart" />
     </View>
-    <Image
-      style={styles.animalImage}
-      source={require('../../assets/dog.jpg')}
-    />
+    <Image style={styles.animalImage} source={{ uri: value.photo }} />
     <View style={styles.infoView}>
       <Text>{value.sexo}</Text>
       <Text>ADULTO</Text>
