@@ -30,7 +30,7 @@ export default function DrawerAvatar({ navigation }: { navigation?: any }) {
   return (
     <>
       <Box>
-        <UserImage source={require('../../assets/dog.jpg')} />
+        <UserImage source={{ uri: auth?.profile.photo }} />
       </Box>
       <List.Accordion
         title={auth?.profile.name}

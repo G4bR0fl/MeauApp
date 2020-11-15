@@ -6,6 +6,7 @@ export interface Profile {
     state: string;
     city: string;
     address: string;
+    photo: string;
     username: string;
     deviceToken?: string;
     uid?: string;
