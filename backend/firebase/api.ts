@@ -84,6 +84,12 @@ const Database = {
       ref.set({ deviceToken: token }, { merge: true })
       return ref
     },
+    async listOwnedPets() {
+      const currentUser = await Auth.currentUser()
+      const db = FirebaseApp.firestore().collection('pets')
+      const snapshot = await (await db.get()).query.where('owner', '==', currentUser?.ref).get()
+      return snapshot.docs.map(item => item)
+    },
     async sendNotification({
       token,
       data = {
