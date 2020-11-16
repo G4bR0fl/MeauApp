@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';
 import { invertedTheme } from '../components/theme';
-import PetAdopt from '../screens/petAdopt';
+import PetDetail from '../screens/petAdopt';
 import PetAdoption from '../screens/petAdoption';
 import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
@@ -58,8 +58,8 @@ export const atalhosRoutes = {
 const hiddentRoutes = [
   {
     title: undefined,
-    name: PetAdopt.name,
-    component: PetAdopt,
+    name: PetDetail.name,
+    component: PetDetail,
     header: yellowHeader,
   },
 ];
