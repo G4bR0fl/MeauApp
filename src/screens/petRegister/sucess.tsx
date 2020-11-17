@@ -2,14 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { BigTitle } from '../../components/BigTitle';
-import { Api } from '../../firebase/api';
-import Animal from '../../firebase/models/Animal';
 
 export default function PetRegisterSucess() {
-  function onSubmit(data: Animal) {
-    Api.Database.createPet(data);
-  }
-
   return (
     <View>
       <BigTitle>Oba!</BigTitle>

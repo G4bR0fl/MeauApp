@@ -8,10 +8,10 @@ import {
 import { Button, Provider as PaperProvider, TextInput } from 'react-native-paper';
 import Icon from "react-native-vector-icons/FontAwesome";
 import { ThemeProvider } from 'styled-components';
+import { Api } from "../../backend/firebase/api";
+import AuthContext from "../components/auth/auth.context";
 import AppLogo from '../components/Logo';
 import { theme } from '../components/theme';
-import { Api } from '../firebase/api';
-import AuthContext from "../firebase/auth.context";
 
 function Login({ navigation }) {
 

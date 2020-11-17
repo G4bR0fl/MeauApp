@@ -1,27 +1,57 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Button,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
-
-const Stack = createStackNavigator();
+import { Api } from '../../backend/firebase/api';
+import { Profile } from '../../backend/models/User';
+import { InputLabel } from '../components/InputLabel';
+import { PhotoInput } from '../components/PhotoInput';
 
 export default function profileRegister({ navigation }) {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState<number>(undefined as any);
+  const [email, setEmail] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  const person = {
+    name,
+    age,
+    email,
+    state,
+    city,
+    address,
+    phone,
+    username,
+    password,
+  } as Profile & { password: string };
+
+  function onSubmit(data: any) {
+    if (password === passwordConfirmation) {
+      const { email, password, ...rest } = person;
+      Api.Auth.createUser({ email, password }, { email, ...rest });
+      console.log('User criado com sucesso!');
+    } else {
+      console.log('Senhas diferentes, user não foi criado');
+    }
+  }
+
   return (
     <ScrollView>
       <StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
 
       <View style={styles.container}>
-        <View style={styles.header}></View>
-
         <View style={styles.infoBox}>
           <Text style={{ fontFamily: 'Roboto_400Regular' }}>
             As informações preenchidas serão divulgadas apenas para a pessoa com
@@ -32,79 +62,89 @@ export default function profileRegister({ navigation }) {
 
         <View style={styles.formData}>
           <Text style={styles.personalInfoText}>INFORMAÇÕES PESSOAIS</Text>
-
           <TextInput
             keyboardType="default"
             style={styles.input}
             placeholder="Nome Completo"
+            onChangeText={text => setName(text)}
+            value={name}
           />
           <TextInput
             keyboardType="numeric"
             style={styles.input}
             placeholder="Idade"
+            onChangeText={text => setAge(text)}
+            value={age}
           />
           <TextInput
             keyboardType="email-address"
             style={styles.input}
             placeholder="E-mail"
+            onChangeText={text => setEmail(text)}
+            value={email}
           />
           <TextInput
             keyboardType="default"
             style={styles.input}
             placeholder="Estado"
+            onChangeText={text => setState(text)}
+            value={state}
           />
           <TextInput
             keyboardType="default"
             style={styles.input}
             placeholder="Cidade"
+            onChangeText={text => setCity(text)}
+            value={city}
           />
           <TextInput
             multiline
             keyboardType="default"
             style={styles.input}
             placeholder="Endereço"
+            onChangeText={text => setAddress(text)}
+            value={address}
           />
           <TextInput
             keyboardType="numeric"
             style={styles.input}
             placeholder="Telefone"
+            onChangeText={text => setPhone(text)}
+            value={phone}
           />
-
           <Text style={styles.personalInfoText}>INFORMAÇÕES DE PERFIL</Text>
           <TextInput
             keyboardType="default"
             style={styles.input}
             placeholder="Nome de usuário"
+            onChangeText={text => setUsername(text)}
+            value={username}
           />
           <TextInput
-            style={styles.inputFont}
             secureTextEntry={true}
             keyboardType="default"
             style={styles.input}
-            courgette
             placeholder="Senha"
+            onChangeText={text => setPassword(text)}
+            value={password}
           />
           <TextInput
             secureTextEntry={true}
             keyboardType="default"
             style={styles.input}
             placeholder="Confirmação de senha"
+            onChangeText={text => setPasswordConfirmation(text)}
+            value={passwordConfirmation}
           />
-
-          <Text style={styles.personalInfoText}>FOTO DE PERFIL</Text>
-          <View style={styles.pictureStyle}>
-            <Icon name="control-point" style={styles.pictureText} />
-            <Text style={styles.pictureText}>adicionar foto</Text>
-          </View>
-          <TouchableOpacity>
+          <InputLabel>Foto de Perfil</InputLabel>
+          <PhotoInput />
+          <TouchableOpacity onPress={() => onSubmit(person)}>
             <View style={styles.registerButton}>
               <Text>FAZER CADASTRO</Text>
             </View>
           </TouchableOpacity>
         </View>
       </View>
-
-      <Button title="Go back" onPress={() => navigation.goBack()} />
     </ScrollView>
   );
 }
@@ -151,7 +191,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   pictureStyle: {
-    // Consertar detalhes
     width: 128,
     height: 128,
     marginTop: 32,

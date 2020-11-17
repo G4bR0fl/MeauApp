@@ -1,8 +1,33 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import PetAdopt from '../screens/petAdopt';
+import { Animal } from '../../backend/models/Animal';
+
+export default function DogCard({
+  value,
+  onPress,
+}: {
+  value: Animal;
+  onPress?: Function | any;
+}) {
+  return (
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <View style={styles.titleView}>
+        <Text style={styles.titleText}>{value.nome}</Text>
+        <Icon name="heart" />
+      </View>
+      <Image style={styles.animalImage} source={{ uri: value.photo }} />
+      <View style={styles.infoView}>
+        <Text>{value.sexo}</Text>
+        <Text>ADULTO</Text>
+        <Text>MÉDIO</Text>
+      </View>
+      <View style={styles.infoView}>
+        <Text>SAMAMBAIA SUL - DISTRITO FEDERAL</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 const styles = StyleSheet.create({
   headerBar: {
@@ -49,28 +74,3 @@ const styles = StyleSheet.create({
     height: 183,
   },
 });
-const Stack = createStackNavigator();
-
-const DogCard = () => (
-  
-    <View style={styles.container}>
-      <View style={styles.titleView}>
-        <Text style={styles.titleText}>Pequi</Text>
-        <Icon name="heart" />
-      </View>
-      <Image
-        style={styles.animalImage}
-        source={require('../../assets/dog.jpg')}
-      />
-      <View style={styles.infoView}>
-        <Text>MACHO</Text>
-        <Text>ADULTO</Text>
-        <Text>MÉDIO</Text>
-      </View>
-      <View style={styles.infoView}>
-        <Text>SAMAMBAIA SUL - DISTRITO FEDERAL</Text>
-      </View>
-    </View>
-);
-
-export default DogCard;
