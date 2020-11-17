@@ -3,6 +3,7 @@ import { Profile } from "./User";
 
 export default interface BaseAnimal {
     nome: string;
+    intent: Intent[];
     especie: 'cachorro' | 'gato';
     sexo: 'M' | 'F';
     porte: 'pequeno' | 'medio ' | 'grande';
@@ -10,6 +11,7 @@ export default interface BaseAnimal {
     photo?: string;
 }
 
+export type Intent = 'adocao' | 'apadrinhar' | 'ajuda';
 
 export interface CrossUserAnimal {
     user: DocumentReference<Profile>;
