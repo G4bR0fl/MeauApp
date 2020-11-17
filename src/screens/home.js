@@ -4,7 +4,6 @@ import { Button } from 'react-native-paper';
 import { Api } from '../../backend/firebase/api';
 import AuthContext from '../components/auth/auth.context';
 import AtalhosStack from '../routes/AtalhosStack';
-import Login from './login';
 import PetAdoption from './petAdoption';
 import PetRegister from './petRegister/petRegister';
 
@@ -123,14 +122,7 @@ export default function Home({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-      <Text
-        style={styles.loginLink}
-        onPress={() => {
-          navigation.navigate(Login.name);
-        }}
-      >
-        login
-      </Text>
+      <Text style={styles.loginLink}>login</Text>
       <Image
         style={styles.logo}
         source={require('../../assets/logo/meau_logo.png')}

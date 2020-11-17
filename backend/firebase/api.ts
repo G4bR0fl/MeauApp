@@ -1,4 +1,4 @@
-import { Animal, CrossUserAnimal } from '@backend/models/Animal';
+import { Animal, CrossUserAnimal, Intent } from '@backend/models/Animal';
 import { DocumentSnapshot } from '@google-cloud/firestore';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
@@ -50,8 +50,12 @@ const Auth = {
 const Database = {
   Pet: {
     async listAdoption() {
+      const currentUser = await Auth.currentUser()
       const db = FirebaseApp.firestore().collection('pets')
-      const snapshot = await db.get()
+      const snapshot = await (await db.get()).query
+        .where('intent', 'array-contains', 'adocao' as Intent)
+        //.where('owner', '!=', currentUser?.ref)
+        .get()
       return snapshot.docs.map(item => item)
     },
     async createPet(data: Animal) {
@@ -69,6 +73,7 @@ const Database = {
       const data: Animal = animal.data() as Animal
       animal.ref.collection('interest').add({ user: currentUser?.ref } as CrossUserAnimal)
       const owner = (await data.owner.get()).data() as Profile
+      console.log(owner.deviceToken)
       Database.Profile.sendNotification({
         token: owner.deviceToken,
         data: {

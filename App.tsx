@@ -40,8 +40,7 @@ export default function App() {
     });
     FirebaseApp.auth().onAuthStateChanged(async authUser => {
       if (authUser != null) {
-        getPushNotificationToken(setExpoPushToken);
-        Api.Database.Profile.updatePushToken(expoPushToken);
+        await getPushNotificationToken(setExpoPushToken);
         const currentUser = await Api.Auth.currentUser();
         setAuth(currentUser as any);
       } else {
@@ -49,6 +48,12 @@ export default function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (expoPushToken) {
+      Api.Database.Profile.updatePushToken(expoPushToken);
+    }
+  }, [expoPushToken]);
 
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,

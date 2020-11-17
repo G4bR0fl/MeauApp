@@ -9,11 +9,7 @@ import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
 import profileRegister from '../screens/profileRegister';
-import {
-  greenHeader,
-  headerLeft as drawerButton,
-  yellowHeader
-} from './stack-util';
+import { headerLeft as drawerButton, yellowHeader } from './stack-util';
 
 const Stack = createStackNavigator();
 
@@ -57,10 +53,10 @@ export const atalhosRoutes = {
 
 const hiddentRoutes = [
   {
-    title: "Rufus",
+    title: 'Rufus',
     name: PetDetail.name,
     component: PetDetail,
-    header: yellowHeader
+    header: yellowHeader,
   },
 ];
 
@@ -75,7 +71,7 @@ export default function AtalhosStack({ navigation }) {
               name={route.name}
               component={route.component}
               options={{
-                ...greenHeader(route.title),
+                ...yellowHeader(route.title),
                 headerLeft: drawerButton(navigation),
               }}
             />

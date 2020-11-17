@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 import styled from 'styled-components/native';
 import CheckboxGroup from '../../components/CheckboxGroup';
+import IntentField from '../../components/form/IntentField';
 import Hr from '../../components/Hr';
 import { InputLabel } from '../../components/InputLabel';
 import { PhotoInput } from '../../components/PhotoInput';
@@ -11,13 +12,6 @@ import {
   RadioButton,
   RadioButtonGroup,
 } from '../../components/RadioButtonGroup';
-
-const ButtonBox = styled.View`
-  width: 100%;
-  padding: 5%;
-  justify-content: space-between;
-  flex-direction: row;
-`;
 
 const Title = styled.Text`
   font-size: 18px;
@@ -27,6 +21,12 @@ const Title = styled.Text`
 
 export default function PetRegisterForm({ onSubmit }) {
   const { control, handleSubmit, errors } = useForm();
+
+  const intentList = [
+    { label: 'Adoção', value: 'adocao' },
+    { label: 'Apadinhar', value: 'apadinhar' },
+    { label: 'Ajuda', value: 'ajuda' },
+  ];
 
   const temperamentos = [
     { label: 'Brincalhão', prop: 'brincalhao' },
@@ -58,17 +58,10 @@ export default function PetRegisterForm({ onSubmit }) {
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
-          <ButtonBox
-          //onChangeText={onChange}
-          //value={value}
-          >
-            <Button mode="contained">Adoção</Button>
-            <Button mode="contained">Apadrinhar</Button>
-            <Button mode="contained">Ajuda</Button>
-          </ButtonBox>
+          <IntentField list={intentList} onChange={onChange} value={value} />
         )}
-        name="interesse"
-        defaultValue=""
+        name="intent"
+        defaultValue={[]}
       />
       <Hr />
       <Title>Ajuda</Title>
