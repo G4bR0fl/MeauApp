@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Animal } from '../../backend/models/Animal';
 
-export default function DogCard({
+export default function DogCardProfile({
   value,
   onPress,
 }: {
@@ -18,12 +18,10 @@ export default function DogCard({
       </View>
       <Image style={styles.animalImage} source={{ uri: value.photo }} />
       <View style={styles.infoView}>
-        <Text>{value.sexo}</Text>
-        <Text>ADULTO</Text>
-        <Text>MÉDIO</Text>
+        <Text>3 novos interessados</Text>
       </View>
       <View style={styles.infoView}>
-        <Text>SAMAMBAIA SUL - DISTRITO FEDERAL</Text>
+        <Text>Apadrinhamento | Ajuda</Text>
       </View>
     </TouchableOpacity>
   );

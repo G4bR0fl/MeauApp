@@ -4,7 +4,7 @@ import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Api } from '../../backend/firebase/api';
 import DogCard from '../components/DogCard';
-import PetAdopt from './petAdopt';
+import PetDetail from './petAdopt';
 
 
 const Stack = createStackNavigator();
@@ -37,7 +37,7 @@ export default function PetAdoption({ navigation }) {
   });
 
   function petDetail(detail) {
-    navigation.navigate(PetAdopt.name, { detail })
+    navigation.navigate(PetDetail.name, { detail })
   }
   return (
     <ScrollView style={styles.container}>

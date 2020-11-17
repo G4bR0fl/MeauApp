@@ -57,7 +57,7 @@ const images = [
   require('../../assets/dog.jpg'),
   require('../../assets/dog.jpg'),
 ];
-function PetAdopt({ route, navigation }) {
+function PetDetail({ route, navigation }) {
   const doc = route.params.detail as DocumentSnapshot<Animal>;
   const detail: Animal = doc.data() as Animal;
   navigation.setOptions({ title: detail.nome });
@@ -148,4 +148,4 @@ function PetAdopt({ route, navigation }) {
   );
 }
 
-export default PetAdopt;
+export default PetDetail;

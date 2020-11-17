@@ -3,17 +3,13 @@ import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';
 import { invertedTheme } from '../components/theme';
-import PetAdopt from '../screens/petAdopt';
+import PetDetail from '../screens/petAdopt';
 import PetAdoption from '../screens/petAdoption';
 import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
 import profileRegister from '../screens/profileRegister';
-import {
-  greenHeader,
-  headerLeft as drawerButton,
-  yellowHeader,
-} from './stack-util';
+import { headerLeft as drawerButton, yellowHeader } from './stack-util';
 
 const Stack = createStackNavigator();
 
@@ -58,8 +54,8 @@ export const atalhosRoutes = {
 const hiddentRoutes = [
   {
     title: undefined,
-    name: PetAdopt.name,
-    component: PetAdopt,
+    name: PetDetail.name,
+    component: PetDetail,
     header: yellowHeader,
   },
 ];
@@ -75,7 +71,7 @@ export default function AtalhosStack({ navigation }) {
               name={route.name}
               component={route.component}
               options={{
-                ...greenHeader(route.title),
+                ...yellowHeader(route.title),
                 headerLeft: drawerButton(navigation),
               }}
             />

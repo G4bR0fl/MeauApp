@@ -14,8 +14,9 @@ import {
   Roboto_900Black_Italic,
 } from '@expo-google-fonts/roboto';
 import { NavigationContainer } from '@react-navigation/native';
-import { AppLoading, Notifications } from 'expo';
+import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
+import * as Notifications from 'expo-notifications';
 import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
 import { Api } from './backend/firebase/api';
@@ -34,26 +35,20 @@ export default function App() {
   useEffect(() => {
     //setup
     registerForPushNotifications();
-    Notifications.addListener(listener => {
+    Notifications.addNotificationReceivedListener(listener => {
       console.log(listener);
     });
-    FirebaseApp.auth().onAuthStateChanged(async user => {
-      if (user != null) {
+    FirebaseApp.auth().onAuthStateChanged(async authUser => {
+      if (authUser != null) {
+        getPushNotificationToken(setExpoPushToken);
+        Api.Database.Profile.updatePushToken(expoPushToken);
         const currentUser = await Api.Auth.currentUser();
         setAuth(currentUser as any);
-        getPushNotificationToken(setExpoPushToken);
       } else {
         setAuth(undefined);
       }
     });
   }, []);
-
-  useEffect(() => {
-    console.log(expoPushToken);
-    if (expoPushToken) {
-      Api.Database.Profile.updatePushToken(expoPushToken);
-    }
-  }, [expoPushToken]);
 
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,
