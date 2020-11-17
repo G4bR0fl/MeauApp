@@ -3,8 +3,8 @@ import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';
 import { invertedTheme } from '../components/theme';
-import PetDetail from '../screens/petAdopt';
 import PetAdoption from '../screens/petAdoption';
+import PetDetail from '../screens/petDetail';
 import PetHelp from '../screens/petHelp';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
@@ -12,7 +12,7 @@ import profileRegister from '../screens/profileRegister';
 import {
   greenHeader,
   headerLeft as drawerButton,
-  yellowHeader,
+  yellowHeader
 } from './stack-util';
 
 const Stack = createStackNavigator();
@@ -57,10 +57,10 @@ export const atalhosRoutes = {
 
 const hiddentRoutes = [
   {
-    title: undefined,
+    title: "Rufus",
     name: PetDetail.name,
     component: PetDetail,
-    header: yellowHeader,
+    header: yellowHeader
   },
 ];
 

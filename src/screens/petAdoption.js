@@ -4,7 +4,7 @@ import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Api } from '../../backend/firebase/api';
 import DogCard from '../components/DogCard';
-import PetDetail from './petAdopt';
+import PetDetail from './petDetail';
 
 
 const Stack = createStackNavigator();

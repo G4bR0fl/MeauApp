@@ -1,11 +1,11 @@
 import { DocumentSnapshot } from '@google-cloud/firestore';
 import * as React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SliderBox } from 'react-native-image-slider-box';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components';
 import { Api } from '../../backend/firebase/api';
 import { Animal } from '../../backend/models/Animal';
+import Divider from '../components/Hr';
 import { InputLabel } from '../components/InputLabel';
 import { invertedTheme } from '../components/theme';
 
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   infoRow: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignContent: 'flex-start',
     paddingRight: 60,
     marginTop: 16,
@@ -43,19 +42,38 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 16,
     color: '#434343',
+    fontWeight: "bold"
   },
   animalImage: {
     width: '100%',
     height: 183,
   },
+  hr: {
+    marginTop: 16,
+    marginBottom: 16,
+    color: '#e0e0e0',
+  },
+  infoBox: {
+    paddingRight: 90,
+    paddingBottom: 12
+  },
+  textButton: {
+    alignContent: 'center',
+    alignSelf: 'center',
+    fontSize: 12,
+    color: '#434343',
+  },
+  button: {
+    marginBottom: 10,
+    marginTop: 28,
+  },
+  input: {
+    color: '#757575'
+  }
 });
 
 const images = [
-  require('../../assets/dog.jpg'),
-  require('../../assets/dog.jpg'),
-  require('../../assets/dog.jpg'),
-  require('../../assets/dog.jpg'),
-  require('../../assets/dog.jpg'),
+  require('../../assets/dog.jpg')
 ];
 function PetDetail({ route, navigation }) {
   const doc = route.params.detail as DocumentSnapshot<Animal>;
@@ -70,75 +88,75 @@ function PetDetail({ route, navigation }) {
     <PaperProvider theme={invertedTheme}>
       <ThemeProvider theme={invertedTheme}>
         <ScrollView>
-          <SliderBox
-            images={images}
-            dotColor="white"
-            inactiveDotColor="#90A4AE"
-          />
+        <Image style={styles.animalImage} source={{ uri: detail.photo }} />
           <View style={styles.infoContainer}>
             <View>
               <Text style={styles.titleText}>{detail.nome}</Text>
             </View>
             <View style={styles.infoRow}>
-              <View>
-                <InputLabel>Sexo</InputLabel>
-                <Text>{detail.sexo}</Text>
-              </View>
-              <View>
-                <InputLabel>Porte</InputLabel>
-                <Text>{detail.porte}</Text>
-              </View>
-              <View>
-                <InputLabel>Idade</InputLabel>
-                <Text>{detail.idade}</Text>
-              </View>
-            </View>
-            <View>
-              <InputLabel>Localização</InputLabel>
-              <Text>Samambai Sul - Distrito Federal</Text>
-            </View>
-            <View>
-              <View>
-                <InputLabel>Castrado</InputLabel>
-                <Text>Não</Text>
-              </View>
-              <View>
-                <Text>VERMIFUGADO</Text>
-                <Text>Sim</Text>
-              </View>
-            </View>
-            <View>
-              <View>
-                <Text>VACINADO</Text>
-                <Text>Não</Text>
-              </View>
-              <View>
-                <Text>DOENÇAS</Text>
-                <Text>Nenhuma</Text>
-              </View>
-            </View>
-            <View>
-              <Text>TEMPERAMENTO</Text>
-              <Text>Calmo e dócil</Text>
-            </View>
-            <View>
-              <Text>EXIGÊNCIAS DO DOADOR</Text>
-              <Text>
-                Termo de adoção, fotos da casam visita prévia e acompanhamento
-                durante três meses
-              </Text>
-            </View>
-            <View>
-              <Text>MAIS SOBRE BIDU</Text>
-              <Text>
-                Pequi é um cão muito dócil e de fácil convivência. Adora
-                caminhadas e se dá muito bem com crianças. Tem muito medo de
-                raios e de chuva, nesses momentos ele requer mais atenção. Está
-                disponível para adoção pois eu e minha família o encontramos na
-                rua e não podemos mantê-lo em nossa casa.
-              </Text>
-            </View>
-            <Button mode="contained" onPress={pretetionToAdoption}>
+        <View style={styles.infoBox}>
+          <InputLabel>SEXO</InputLabel>
+          <Text style={styles.input}>{detail.nome}</Text>
+        </View>
+        <View style={styles.infoBox}>
+          <InputLabel>PORTE</InputLabel>
+          <Text style={styles.input}>Médio</Text>
+        </View>
+        <View>
+          <InputLabel>IDADE</InputLabel>
+          <Text style={styles.input}>Adulto</Text>
+        </View>
+      </View>
+      <View>
+        <InputLabel>LOCALIZAÇÃO</InputLabel>
+        <Text style={styles.input}>Samambaia Sul - Distrito Federal</Text>
+      </View>
+        <Divider style={styles.hr}/>
+      <View style={styles.infoRow}>
+        <View style={styles.infoBox}>
+          <InputLabel>CASTRADO</InputLabel>
+          <Text style={styles.input}>Não</Text>
+        </View>
+        <View>
+          <InputLabel>VERMIFUGADO</InputLabel>
+          <Text style={styles.input}>Sim</Text>
+        </View>
+      </View>
+      <View style={styles.infoRow}>
+        <View>
+          <InputLabel style={styles.infoBox}>VACINADO</InputLabel>
+          <Text style={styles.input}>Não</Text>
+        </View>
+        <View>
+          <InputLabel>DOENÇAS</InputLabel>
+          <Text style={styles.input}>Nenhuma</Text>
+        </View>
+      </View>
+        <Divider style={styles.hr}/>
+      <View>
+        <InputLabel>TEMPERAMENTO</InputLabel>
+        <Text style={styles.input}>Calmo e dócil</Text>
+      </View>
+        <Divider style={styles.hr}/>
+      <View>
+        <InputLabel>EXIGÊNCIAS DO DOADOR</InputLabel>
+        <Text style={styles.input}>
+          Termo de adoção, fotos da casam visita prévia e acompanhamento durante
+          três meses
+        </Text>
+      </View>
+        <Divider style={styles.hr}/>
+      <View>
+        <InputLabel>MAIS SOBRE {detail.nome}</InputLabel>
+        <Text style={styles.input}>
+          Rufus é um cão muito dócil e de fácil convivência. Adora caminhadas e
+          se dá muito bem com crianças. Tem muito medo de raios e de chuva,
+          nesses momentos ele requer mais atenção. Está disponível para adoção
+          pois eu e minha família o encontramos na rua e não podemos mantê-lo em
+          nossa casa.
+        </Text>
+      </View>
+            <Button style={styles.button} mode="contained" onPress={pretetionToAdoption}>
               PRETENTO ADOTAR
             </Button>
           </View>
