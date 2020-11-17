@@ -54,7 +54,7 @@ const Database = {
       const db = FirebaseApp.firestore().collection('pets')
       const snapshot = await (await db.get()).query
         .where('intent', 'array-contains', 'adocao' as Intent)
-        .where('owner', '!=', currentUser?.ref)
+        //.where('owner', '!=', currentUser?.ref)
         .get()
       return snapshot.docs.map(item => item)
     },
