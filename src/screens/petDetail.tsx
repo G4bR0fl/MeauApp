@@ -1,4 +1,5 @@
 import { DocumentSnapshot } from '@google-cloud/firestore';
+import AtalhosStack from '@mobile/routes/AtalhosStack';
 import * as React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Provider as PaperProvider } from 'react-native-paper';
@@ -10,10 +11,10 @@ import Divider from '../components/Hr';
 import { InputLabel } from '../components/InputLabel';
 import { invertedTheme } from '../components/theme';
 import ProfileStack from '../routes/ProfileStack';
+import PetInterested from './petInterested';
 import PetRemove from './petRemove';
 
 function PetDetail({ route, navigation }) {
-  console.log(route);
   const doc = route.params.detail as DocumentSnapshot<Animal>;
   const mode = route.params.mode as 'owned' | 'list';
   const detail: Animal = doc.data() as Animal;
@@ -24,7 +25,12 @@ function PetDetail({ route, navigation }) {
   }
 
   function listInterestedPeople() {
-    Api.Database.Pet.listInterestedPeople(doc);
+    navigation.navigate(AtalhosStack.name, {
+      screen: PetInterested.name,
+      params: {
+        detail: doc,
+      },
+    });
   }
 
   function removePet() {
