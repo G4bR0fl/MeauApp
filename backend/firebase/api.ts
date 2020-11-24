@@ -82,6 +82,24 @@ const Database = {
           body: `${currentUser?.profile.name} quer adotá-lo`
         }
       })
+    },
+    async listInterestedPeople(animal: DocumentSnapshot) {
+      const currentUser = await Auth.currentUser()
+      const data: Animal = animal.data() as Animal
+      animal.ref.collection('interest').add({ user: currentUser?.ref } as CrossUserAnimal)
+      const owner = (await data.owner.get()).data() as Profile
+      console.log('ownerToken')
+      console.log(owner.deviceToken)
+      Database.Profile.sendNotification({
+        token: owner.deviceToken,
+        data: {
+          title: `${data.nome} pode ter um novo dono`,
+          body: `${currentUser?.profile.name} quer adotá-lo`
+        }
+      })
+    },
+    async remove(animal: DocumentSnapshot) {
+      return animal.ref.delete()
     }
   },
   Profile: {

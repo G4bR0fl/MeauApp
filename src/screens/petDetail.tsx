@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const images = [require('../../assets/dog.jpg')];
 function PetDetail({ route, navigation }) {
   const doc = route.params.detail as DocumentSnapshot<Animal>;
   const mode = route.params.mode as 'owned' | 'list';
@@ -82,6 +81,14 @@ function PetDetail({ route, navigation }) {
 
   function pretetionToAdoption() {
     Api.Database.Pet.pretetionToAdoption(doc);
+  }
+
+  function listInterestedPeople() {
+    Api.Database.Pet.listInterestedPeople(doc);
+  }
+
+  function removePet() {
+    Api.Database.Pet.remove(doc);
   }
 
   return (
@@ -161,14 +168,14 @@ function PetDetail({ route, navigation }) {
                 <Button
                   style={styles.button}
                   mode="contained"
-                  onPress={pretetionToAdoption}
+                  onPress={listInterestedPeople}
                 >
                   Ver Interessados
                 </Button>
                 <Button
                   style={styles.button}
                   mode="contained"
-                  onPress={pretetionToAdoption}
+                  onPress={removePet}
                 >
                   Remover Pet
                 </Button>
