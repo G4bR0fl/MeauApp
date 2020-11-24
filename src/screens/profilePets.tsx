@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { Api } from '../../backend/firebase/api';
 import DogCardProfile from '../components/DogCardProfile';
 import { Container } from '../components/layout';
+import AtalhosStack from '../routes/AtalhosStack';
 import PetDetail from './petDetail';
 
 export default function ProfilePets({ navigation }) {
@@ -15,7 +16,13 @@ export default function ProfilePets({ navigation }) {
   }, []);
 
   function petDetail(detail: any) {
-    navigation.navigate(PetDetail.name, { detail, mode: 'owned' });
+    navigation.navigate(AtalhosStack.name, {
+      screen: PetDetail.name,
+      params: {
+        detail,
+        mode: 'owned',
+      },
+    });
   }
 
   return (

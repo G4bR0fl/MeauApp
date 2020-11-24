@@ -12,70 +12,8 @@ import { invertedTheme } from '../components/theme';
 import ProfileStack from '../routes/ProfileStack';
 import PetRemove from './petRemove';
 
-const styles = StyleSheet.create({
-  headerBar: {
-    backgroundColor: '#b6edd9',
-    fontFamily: 'Roboto_400Regular',
-  },
-  likeIcon: {
-    padding: 16,
-  },
-  cardTitle: {
-    backgroundColor: '#fee29b',
-  },
-  infoView: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 3,
-    paddingBottom: 5,
-  },
-  infoRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignContent: 'flex-start',
-    paddingRight: 60,
-    marginTop: 16,
-  },
-  infoContainer: {
-    margin: 20,
-  },
-  titleText: {
-    fontSize: 16,
-    color: '#434343',
-    fontWeight: 'bold',
-  },
-  animalImage: {
-    width: '100%',
-    height: 183,
-  },
-  hr: {
-    marginTop: 16,
-    marginBottom: 16,
-    color: '#e0e0e0',
-  },
-  infoBox: {
-    paddingRight: 90,
-    paddingBottom: 12,
-  },
-  textButton: {
-    alignContent: 'center',
-    alignSelf: 'center',
-    fontSize: 12,
-    color: '#434343',
-  },
-  button: {
-    marginBottom: 10,
-    marginTop: 28,
-  },
-  input: {
-    color: '#757575',
-  },
-});
-
 function PetDetail({ route, navigation }) {
+  console.log(route);
   const doc = route.params.detail as DocumentSnapshot<Animal>;
   const mode = route.params.mode as 'owned' | 'list';
   const detail: Animal = doc.data() as Animal;
@@ -93,7 +31,9 @@ function PetDetail({ route, navigation }) {
     Api.Database.Pet.remove(doc).then(res => {
       navigation.navigate(ProfileStack.name, {
         screen: PetRemove.name,
-        detail: detail,
+        params: {
+          detail: detail,
+        },
       });
     });
   }
@@ -202,5 +142,68 @@ function PetDetail({ route, navigation }) {
     </PaperProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  headerBar: {
+    backgroundColor: '#b6edd9',
+    fontFamily: 'Roboto_400Regular',
+  },
+  likeIcon: {
+    padding: 16,
+  },
+  cardTitle: {
+    backgroundColor: '#fee29b',
+  },
+  infoView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 3,
+    paddingBottom: 5,
+  },
+  infoRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'flex-start',
+    paddingRight: 60,
+    marginTop: 16,
+  },
+  infoContainer: {
+    margin: 20,
+  },
+  titleText: {
+    fontSize: 16,
+    color: '#434343',
+    fontWeight: 'bold',
+  },
+  animalImage: {
+    width: '100%',
+    height: 183,
+  },
+  hr: {
+    marginTop: 16,
+    marginBottom: 16,
+    color: '#e0e0e0',
+  },
+  infoBox: {
+    paddingRight: 90,
+    paddingBottom: 12,
+  },
+  textButton: {
+    alignContent: 'center',
+    alignSelf: 'center',
+    fontSize: 12,
+    color: '#434343',
+  },
+  button: {
+    marginBottom: 10,
+    marginTop: 28,
+  },
+  input: {
+    color: '#757575',
+  },
+});
 
 export default PetDetail;
