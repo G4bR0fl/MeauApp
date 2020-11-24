@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { Api } from '../../backend/firebase/api';
 import DogCardProfile from '../components/DogCardProfile';
 import { Container } from '../components/layout';
-import PetDetail from './petAdopt';
+import PetDetail from './petDetail';
 
 export default function ProfilePets({ navigation }) {
   const [list, setList] = useState<any[]>([]);
@@ -15,7 +15,7 @@ export default function ProfilePets({ navigation }) {
   }, []);
 
   function petDetail(detail: any) {
-    navigation.navigate(PetDetail.name, { detail });
+    navigation.navigate(PetDetail.name, { detail, mode: 'owned' });
   }
 
   return (
