@@ -9,6 +9,8 @@ import { ButtonBox } from '../components/form/ButtonBox';
 import Divider from '../components/Hr';
 import { InputLabel } from '../components/InputLabel';
 import { invertedTheme } from '../components/theme';
+import ProfileStack from '../routes/ProfileStack';
+import PetRemove from './petRemove';
 
 const styles = StyleSheet.create({
   headerBar: {
@@ -88,7 +90,12 @@ function PetDetail({ route, navigation }) {
   }
 
   function removePet() {
-    Api.Database.Pet.remove(doc);
+    Api.Database.Pet.remove(doc).then(res => {
+      navigation.navigate(ProfileStack.name, {
+        screen: PetRemove.name,
+        detail: detail,
+      });
+    });
   }
 
   return (

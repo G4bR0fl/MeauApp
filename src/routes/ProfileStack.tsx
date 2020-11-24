@@ -4,6 +4,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../components/theme';
 import Home from '../screens/home';
+import PetRemove from '../screens/petRemove';
 import ProfileChat from '../screens/profileChat';
 import ProfileFavorites from '../screens/profileFavorites';
 import ProfilePets from '../screens/profilePets';
@@ -44,6 +45,14 @@ export const profileRoutes = {
   ],
 };
 
+const hiddenRoutes = [
+  {
+    title: 'Remover pet',
+    name: PetRemove.name,
+    component: PetRemove,
+  },
+];
+
 export default function ProfileStack({ navigation }) {
   return (
     <PaperProvider theme={theme}>
@@ -60,6 +69,14 @@ export default function ProfileStack({ navigation }) {
             }}
           />
           {profileRoutes.children.map(route => (
+            <Stack.Screen
+              key={route.name}
+              name={route.name}
+              component={route.component}
+              options={greenHeader(route.title)}
+            />
+          ))}
+          {hiddenRoutes.map(route => (
             <Stack.Screen
               key={route.name}
               name={route.name}
