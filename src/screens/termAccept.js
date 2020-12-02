@@ -5,13 +5,14 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
+import InformationsStack from '../routes/InformationsStack';
+import InfoLegislation from './infoLegislation';
 
 const Stack = createStackNavigator();
 
 export default function termAccept({ navigation }) {
-
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#589b9b" />
@@ -25,7 +26,13 @@ export default function termAccept({ navigation }) {
         Para entender um pouco mais sobre as leis que envolvem esse processo,
         acesse nossa área de legislação
       </Text>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate(InformationsStack.name, {
+            screen: InfoLegislation.name,
+          });
+        }}
+      >
         <View style={styles.registerButton}>
           <Text style={{ color: '#434343' }}>LEGISLAÇÃO</Text>
         </View>
