@@ -7,6 +7,8 @@ import { Container } from '../components/layout';
 import { theme } from '../components/theme';
 
 // Ver o navigator que nao ta rolando
+// Redirecionar o click desses caras pra uma página nova
+
 export default function InfoTips() {
   const styles = StyleSheet.create({
     container: {
@@ -64,14 +66,6 @@ export default function InfoTips() {
     },
   ];
 
-  function handleItemClick({ index }) {
-    console.log(index);
-  }
-
-  function handleInnerItemClick({ innerIndex, item, itemIndex }) {
-    console.log(innerIndex);
-  }
-
   return (
     <PaperProvider theme={theme}>
       <ThemeProvider theme={theme}>
@@ -91,10 +85,7 @@ export default function InfoTips() {
                 fontSize: 16,
                 color: '#434343',
               }}
-              chevronColor="red"
               data={CONTENT}
-              onInnerItemClick={handleInnerItemClick}
-              onItemClick={handleItemClick}
             />
           </Container>
         </ScrollView>
