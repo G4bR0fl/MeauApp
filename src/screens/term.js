@@ -1,4 +1,3 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import {
   ScrollView,
@@ -6,17 +5,15 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
-
-const Stack = createStackNavigator();
+import InformationsStack from '../routes/InformationsStack';
+import TermAccept from './termAccept';
 
 export default function term({ navigation }) {
-
   return (
     <ScrollView>
       <StatusBar barStyle="light-content" backgroundColor="#589b9b" />
-
       <View style={styles.container}>
         <View style={styles.header}></View>
 
@@ -47,7 +44,14 @@ export default function term({ navigation }) {
           </Text>
         </View>
 
-        <TouchableOpacity style={{ marginTop: 15 }}>
+        <TouchableOpacity
+          style={{ marginTop: 15 }}
+          onPress={() => {
+            navigation.navigate(InformationsStack.name, {
+              screen: TermAccept.name,
+            });
+          }}
+        >
           <View style={styles.termButton}>
             <Text style={styles.textButton}>TERMO DE ADOÇÃO</Text>
           </View>
