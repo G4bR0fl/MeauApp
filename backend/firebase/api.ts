@@ -96,6 +96,23 @@ const Database = {
         },
       });
     },
+    async pretentionToPatrone(animal: DocumentSnapshot) {
+      const currentUser = await Auth.currentUser();
+      const data: Animal = animal.data() as Animal;
+      animal.ref
+        .collection('patronize')
+        .add({ user: currentUser?.ref } as CrossUserAnimal);
+      const owner = (await data.owner.get()).data() as Profile;
+      console.log('ownerToken');
+      console.log(owner.deviceToken);
+      Database.Profile.sendNotification({
+        token: owner.deviceToken,
+        data: {
+          title: `${data.nome} pode ser apadrinhado`,
+          body: `${currentUser?.profile.name} quer apadrinhá-lo`,
+        },
+      });
+    },
     async pretetionToHelp(animal: DocumentSnapshot) {
       const currentUser = await Auth.currentUser();
       const data: Animal = animal.data() as Animal;

@@ -8,6 +8,7 @@ import PetDetail from '../screens/petDetail';
 import PetHelp from '../screens/petHelp';
 import PetHelpDetail from '../screens/petHelpDetail';
 import PetInterested from '../screens/petInterested';
+import PetPatrone from '../screens/petPatrone';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
 import profileRegister from '../screens/profileRegister';
@@ -64,6 +65,11 @@ const hiddentRoutes = [
     title: 'Interessados',
     name: PetInterested.name,
     component: PetInterested,
+  },
+  {
+    title: 'Apadrinhar',
+    name: PetPatrone.name,
+    component: PetPatrone,
     header: yellowHeader,
   },
   {
