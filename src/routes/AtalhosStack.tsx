@@ -65,6 +65,7 @@ const hiddentRoutes = [
     title: 'Interessados',
     name: PetInterested.name,
     component: PetInterested,
+    header: yellowHeader,
   },
   {
     title: 'Apadrinhar',

@@ -1,6 +1,6 @@
 import { DocumentSnapshot } from '@google-cloud/firestore';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Api } from '../../backend/firebase/api';
 import { Animal } from '../../backend/models/Animal';
 import { Container } from '../components/layout';
@@ -13,20 +13,39 @@ export default function PetInterested({ navigation, route }) {
 
   useEffect(() => {
     Api.Database.Pet.listInterestedPeople(doc).then(res => {
-      //console.log(res.map(r => [r.data(), r]));
-      //setList(res.map(r => [r.data(), r]));
+      console.log(res);
+      setList(res);
     });
   }, []);
 
   return (
     <ScrollView>
       <Container>
-        {list?.map(([item, doc]) => (
-          <View>
-            <Text>a</Text>
-          </View>
-        ))}
+        <View style={styles.infoBox}>
+          {list?.map(item => (
+            <View style={styles.box}>
+              <Image style={styles.animalImage} source={{ uri: item.photo }} />
+              <Text>{item.name}</Text>
+            </View>
+          ))}
+        </View>
       </Container>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  animalImage: {
+    width: 80,
+    height: 80,
+  },
+  infoBox: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  box: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
+  },
+});

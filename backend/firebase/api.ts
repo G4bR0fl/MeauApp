@@ -131,10 +131,11 @@ const Database = {
       });
     },
     async listInterestedPeople(animal: DocumentSnapshot) {
-      const interested = await animal.ref.collection('interest').get()
-      const docs = interested.docs.map(d => (d.data()))
-
-      return docs.map(async d => (await d.user.get()).data())
+      const interested = await (await animal.ref.collection('interest').get()).docs
+      const docs = interested.map(item => item.data())
+      const usersReference = docs.map(async item => (await item.user.get()).data())
+      const result = await Promise.all(usersReference)
+      return result
     },
     async remove(animal: DocumentSnapshot) {
       return animal.ref.delete()
