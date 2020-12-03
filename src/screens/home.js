@@ -8,13 +8,12 @@ import PetAdoption from './petAdoption';
 import PetRegister from './petRegister/petRegister';
 
 export default function Home({ navigation }) {
-  const auth = React.useContext(AuthContext)
+  const auth = React.useContext(AuthContext);
   function send() {
-    const token = auth.profile.deviceToken
-    console.log(token)
-    const data = {
-    }
-    Api.Database.Profile.sendNotification({ token, data })
+    const token = auth.profile.deviceToken;
+    console.log(token);
+    const data = {};
+    Api.Database.Profile.sendNotification({ token, data });
   }
 
   const styles = StyleSheet.create({
@@ -90,21 +89,17 @@ export default function Home({ navigation }) {
         </Text>
         <Text style={styles.textWelcome}>Qual o seu interesse?</Text>
       </View>
-      <Button onPress={send}>
-        Notification
-      </Button>
+      <Button onPress={send}>Notification</Button>
       <View style={styles.clickButtons}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(AtalhosStack.name, { screen: PetAdoption.name });
+            navigation.navigate(AtalhosStack.name, {
+              screen: PetAdoption.name,
+            });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">
-            <Text
-              style={styles.textButton}
-            >
-              ADOTAR
-            </Text>
+            <Text style={styles.textButton}>ADOTAR</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -114,7 +109,9 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(AtalhosStack.name, { screen: PetRegister.name });
+            navigation.navigate(AtalhosStack.name, {
+              screen: PetRegister.name,
+            });
           }}
         >
           <View style={styles.button} backgroundColor="#ffd358">

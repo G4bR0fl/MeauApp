@@ -36,6 +36,7 @@ export function Router() {
       <Drawer.Screen
         name={InformationsStack.name}
         component={InformationsStack}
+        options={loginOptions}
       />
       <Drawer.Screen name={ConfigStack.name} component={ConfigStack} />
     </Drawer.Navigator>
