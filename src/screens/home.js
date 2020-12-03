@@ -5,6 +5,7 @@ import { Api } from '../../backend/firebase/api';
 import AuthContext from '../components/auth/auth.context';
 import AtalhosStack from '../routes/AtalhosStack';
 import PetAdoption from './petAdoption';
+import PetHelp from './petHelp';
 import PetRegister from './petRegister/petRegister';
 
 export default function Home({ navigation }) {
@@ -102,7 +103,13 @@ export default function Home({ navigation }) {
             <Text style={styles.textButton}>ADOTAR</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(AtalhosStack.name, {
+              screen: PetHelp.name,
+            });
+          }}
+        >
           <View style={styles.button} backgroundColor="#ffd358">
             <Text style={styles.textButton}>AJUDAR</Text>
           </View>
