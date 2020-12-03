@@ -4,7 +4,8 @@ import InfoAdoptionHistories from '../screens/infoAdoptionHistories';
 import InfoEvents from '../screens/infoEvents';
 import InfoLegislation from '../screens/infoLegislation';
 import InfoTips from '../screens/infoTips';
-import InfoAdoption from '../screens/petHelp';
+import Term from '../screens/term';
+import TermAccept from '../screens/termAccept';
 import { greenHeader } from './stack-util';
 
 const Stack = createStackNavigator();
@@ -35,8 +36,14 @@ export const infoRoutes = {
     {
       label: 'Termo de Adoção',
       title: 'Termo de Adoção',
-      name: InfoAdoption.name,
-      component: InfoAdoption,
+      name: Term.name,
+      component: Term,
+    },
+    {
+      label: 'Aceite adoção',
+      title: 'Aceite adoção',
+      name: TermAccept.name,
+      component: TermAccept,
     },
     {
       label: 'Histórias de Adoção',
