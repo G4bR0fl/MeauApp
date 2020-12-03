@@ -6,6 +6,7 @@ import { invertedTheme } from '../components/theme';
 import PetAdoption from '../screens/petAdoption';
 import PetDetail from '../screens/petDetail';
 import PetHelp from '../screens/petHelp';
+import PetInterested from '../screens/petInterested';
 import PetPatronize from '../screens/petPatronize';
 import PetRegister from '../screens/petRegister/petRegister';
 import profileRegister from '../screens/profileRegister';
@@ -56,6 +57,12 @@ const hiddentRoutes = [
     title: 'Rufus',
     name: PetDetail.name,
     component: PetDetail,
+    header: yellowHeader,
+  },
+  {
+    title: 'Interessados',
+    name: PetInterested.name,
+    component: PetInterested,
     header: yellowHeader,
   },
 ];

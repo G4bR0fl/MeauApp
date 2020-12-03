@@ -84,8 +84,10 @@ const Database = {
       })
     },
     async listInterestedPeople(animal: DocumentSnapshot) {
-      const interested = animal.ref.collection('interest')
-      return (await interested.get()).docs
+      const interested = await animal.ref.collection('interest').get()
+      const docs = interested.docs.map(d => (d.data()))
+
+      return docs.map(async d => (await d.user.get()).data())
     },
     async remove(animal: DocumentSnapshot) {
       return animal.ref.delete()

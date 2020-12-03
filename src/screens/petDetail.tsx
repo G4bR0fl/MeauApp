@@ -1,5 +1,4 @@
 import { DocumentSnapshot } from '@google-cloud/firestore';
-import AtalhosStack from '@mobile/routes/AtalhosStack';
 import * as React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Provider as PaperProvider } from 'react-native-paper';
@@ -10,6 +9,7 @@ import { ButtonBox } from '../components/form/ButtonBox';
 import Divider from '../components/Hr';
 import { InputLabel } from '../components/InputLabel';
 import { invertedTheme } from '../components/theme';
+import AtalhosStack from '../routes/AtalhosStack';
 import ProfileStack from '../routes/ProfileStack';
 import PetInterested from './petInterested';
 import PetRemove from './petRemove';
