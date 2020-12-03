@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
 });
 
 const images = [require('../../assets/dog.jpg')];
-function PetDetail({ route, navigation }) {
+function PetHelpDetail({ route, navigation }) {
   const doc = route.params.detail as DocumentSnapshot<Animal>;
   const detail: Animal = doc.data() as Animal;
   navigation.setOptions({ title: detail.nome });
 
-  function pretetionToAdoption() {
-    Api.Database.Pet.pretetionToAdoption(doc);
+  function pretetionToHelp() {
+    Api.Database.Pet.pretetionToHelp(doc);
   }
 
   return (
@@ -157,9 +157,9 @@ function PetDetail({ route, navigation }) {
             <Button
               style={styles.button}
               mode="contained"
-              onPress={pretetionToAdoption}
+              onPress={pretetionToHelp}
             >
-              PRETENTO ADOTAR
+              PRETENTO AJUDAR
             </Button>
           </View>
         </ScrollView>
@@ -168,4 +168,4 @@ function PetDetail({ route, navigation }) {
   );
 }
 
-export default PetDetail;
+export default PetHelpDetail;
